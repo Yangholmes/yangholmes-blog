@@ -5,6 +5,7 @@ import {useComment} from './composables/useComment';
   const commentRef = useTemplateRef('comment-ref');
 
   useComment(commentRef)
+
 </script>
 
 <template>

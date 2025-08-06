@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {useData, useRoute} from 'vitepress';
 import {computed} from 'vue';
-import Search from 'vitepress-plugin-pagefind/Search.vue';
+import Search from 'vitepress-plugin-search/Search.vue';
 import Socials from './Socials.vue';
 
 const { theme, page, frontmatter } = useData();
@@ -25,11 +25,6 @@ const catInRoute = computed(() => {
       <Search class="search" />
     </div>
     <ul class="nav">
-      <li>
-        <a href="/">
-          首页
-        </a>
-      </li>
       <li
         v-for="cat in allCategories"
         :key="cat"
@@ -79,6 +74,7 @@ const catInRoute = computed(() => {
       top: 0;
       .search {
         flex: none;
+        color: var(--color--level-5)
       }
     }
 

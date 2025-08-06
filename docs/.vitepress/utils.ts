@@ -56,6 +56,10 @@ export function getAllPosts() {
           url: `/${cat}/${post.replace('.md', '')}`,
           createDate: frontmatter.data.createDate,
         }
+      }).sort((a, b) => {
+        const at = a.createDate ? new Date(a.createDate).getTime() : 0;
+        const bt = b.createDate ? new Date(b.createDate).getTime() : 0;
+        return bt - at;
       });
 
     allPosts[cat] = posts;

@@ -3,14 +3,15 @@ import { useData } from 'vitepress';
 
 import Sidebar from './Sidebar.vue';
 import NotFound from './NotFound.vue';
+import Page from './Page.vue';
+import PostList from './PostList.vue';
 
 import useLayout from './composables/useLayout';
 import {onMounted} from 'vue';
 
-
 const { page } = useData();
 
-const activeLayout = useLayout();
+const layoutName = useLayout();
 
 </script>
 
@@ -20,12 +21,8 @@ const activeLayout = useLayout();
   <div class="main-layout" v-else>
     <Sidebar />
     <div class="content">
-      <Suspense>
-        <component :is="activeLayout" />
-        <template #fallback>
-          <div class="loading">Loading...</div>
-        </template>
-      </Suspense>
+      <PostList v-if="layoutName === 'PostList'"/>
+      <Page v-else />
     </div>
   </div>
 

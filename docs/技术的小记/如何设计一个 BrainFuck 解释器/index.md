@@ -1,5 +1,6 @@
 ---
 createDate: 1526860800000
+title: 如何设计一个 BrainFuck 解释器
 ---
 
 ### BrainFuck 解释器

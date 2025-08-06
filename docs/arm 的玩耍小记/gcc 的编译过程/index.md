@@ -1,5 +1,6 @@
 ---
 createDate: 2019/10/27
+title: gcc 的编译过程
 ---
 
 ### gcc 的使用

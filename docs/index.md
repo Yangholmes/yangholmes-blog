@@ -1,1 +1,6 @@
-首页
+---
+layout: Home
+pagefind-indexed: false
+---
+
+欢迎光临！

@@ -1,5 +1,6 @@
 import { defineConfigWithTheme } from 'vitepress'
-import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
+import { SearchPlugin } from "vitepress-plugin-search";
+import flexSearchIndexOptions from "flexsearch";
 import autoprefixer from 'autoprefixer';
 
 import { getAllCategories, getAllPosts, importFile } from './utils'
@@ -13,8 +14,11 @@ export default defineConfigWithTheme({
 
   vite: {
     plugins: [
-      pagefindPlugin({
-        customSearchQuery: chineseSearchOptimize
+      SearchPlugin({
+        ...flexSearchIndexOptions,
+        previewLength: 100, //搜索结果预览长度
+        buttonLabel: "搜索",
+        placeholder: "情输入关键词",
       })
     ],
     css: {
@@ -29,6 +33,10 @@ export default defineConfigWithTheme({
     categories: getAllCategories(),
     posts: await getAllPosts(),
     lastUpdated: true,
+
+    search: {
+      provider: 'local',
+    },
 
     socialLinks: [
       {

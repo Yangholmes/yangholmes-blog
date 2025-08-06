@@ -9,20 +9,20 @@ const props = defineProps<{
 const iconSrc = ref('')
 
 watch(() => props.icon, (val) => {
-  import(`./logos/${val}.svg`).then((module) => { iconSrc.value = module.default })
+  console.log(val);
+  import(`./logos/${val}.svg`).then((module) => {
+    console.log(module.default);
+    iconSrc.value = `url("${module.default}")`
+  })
 }, { immediate: true });
 
 </script>
 
 <template>
-  <!-- <div
-    class="social-icon"
-    :style="`background-image: url(${iconSrc})`"
-  > -->
   <a :href="props.link" target="_blank" rel="noopener noreferrer">
     <div
       class="social-icon"
-      :style="`--mask-image: url(${iconSrc})`"
+      :style="`--mask-image: ${iconSrc}`"
     >
     </div>
   </a>
