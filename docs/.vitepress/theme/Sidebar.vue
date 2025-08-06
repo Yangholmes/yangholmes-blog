@@ -56,7 +56,7 @@ const catInRoute = computed(() => {
     align-items: flex-end;
     justify-content: center;
 
-    background-color: #93786A;
+    background-color: var(--color--level-3);
     color: #FFF;
     font-weight: 900;
     font-size: 1.25em;

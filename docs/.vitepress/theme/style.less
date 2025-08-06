@@ -11,9 +11,23 @@ html, body {
 }
 
 :root {
+
+  --vp-c-bg: #F2F2F2;
+
   --color--level-1: #F2C98B;
   --color--level-2: #E0AB81;
   --color--level-3: #93786A;
   --color--level-4: #6A4D31;
   --color--level-5: #462D25;
+
+  &.dark {
+    --vp-c-bg: #444;
+    --vp-c-bg-alt: #222;
+
+    --color--level-1: #462D25;
+    --color--level-2: #6A4D31;
+    --color--level-3: #93786A;
+    --color--level-4: #E0AB81;
+    --color--level-5: #F2C98B;
+  }
 }

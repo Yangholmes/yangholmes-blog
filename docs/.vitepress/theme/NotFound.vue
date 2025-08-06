@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import {onMounted, onUnmounted, ref} from 'vue';
-// import cx from 'classnames'
 
 const x = ref(0);
 const y = ref(0);

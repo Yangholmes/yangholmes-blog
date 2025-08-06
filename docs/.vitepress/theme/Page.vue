@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {ref, shallowRef, useTemplateRef} from 'vue';
+import {useTemplateRef} from 'vue';
 import {useComment} from './composables/useComment';
 
   const commentRef = useTemplateRef('comment-ref');

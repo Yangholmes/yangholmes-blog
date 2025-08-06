@@ -8,11 +8,9 @@ import useLayout from './composables/useLayout';
 import {onMounted} from 'vue';
 
 
-const { theme, page, frontmatter } = useData();
+const { page } = useData();
 
 const activeLayout = useLayout();
-
-console.log(page);
 
 </script>
 
