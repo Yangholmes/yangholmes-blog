@@ -74,7 +74,8 @@ const catInRoute = computed(() => {
       top: 0;
       .search {
         flex: none;
-        color: var(--color--level-5)
+        padding: 0;
+        color: var(--color--level-5);
       }
     }
 
