@@ -61,9 +61,10 @@ const catInRoute = computed(() => {
     .bottom-bar {
       width: 100%;
       height: 3em;
+      padding-right: 3em;
 
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
 
       position: absolute;
