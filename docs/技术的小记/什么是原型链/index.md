@@ -32,7 +32,7 @@ console.log(String.prototype);
 
 可以得到类似的输出
 
-```javascript
+```bash
 ƒ String() { [native code] }
 String {"", constructor: ƒ, anchor: ƒ, big: ƒ, blink: ƒ, …}
 ```
@@ -48,7 +48,7 @@ console.log(Object.getPrototypeOf(str) === String.prototype);
 
 可以得到类似的输出
 
-```javascript
+```bash
 String {"str"}
 String {"", constructor: ƒ, anchor: ƒ, big: ƒ, blink: ƒ, …}
 true
@@ -60,6 +60,6 @@ true
 console.log(Object.getPrototypeOf(Object.prototype));
 ```
 
-```javascript
+```bash
 null;
 ```
