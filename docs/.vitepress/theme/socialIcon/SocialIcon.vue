@@ -9,9 +9,7 @@ const props = defineProps<{
 const iconSrc = ref('')
 
 watch(() => props.icon, (val) => {
-  console.log(val);
   import(`./logos/${val}.svg`).then((module) => {
-    console.log(module.default);
     iconSrc.value = `url("${module.default}")`
   })
 }, { immediate: true });

@@ -10,7 +10,6 @@ const { theme, page, frontmatter } = useData();
 const socialLinks = computed(() => {
   return theme.value.socialLinks;
 });
-console.log(socialLinks.value);
 </script>
 
 <template>

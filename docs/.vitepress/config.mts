@@ -7,8 +7,6 @@ import { getAllCategories, getAllPosts } from './utils';
 
 const MS_CLARITY_ID = process.env.MS_CLARITY_ID || '';
 
-console.log(MS_CLARITY_ID);
-
 // https://vitepress.dev/reference/site-config
 export default defineConfigWithTheme({
   lang: 'zh-cn',

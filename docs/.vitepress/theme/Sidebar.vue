@@ -13,7 +13,6 @@ const allCategories = computed(() => {
 })
 
 const catInRoute = computed(() => {
-  console.log(route);
   return decodeURIComponent(route.path.split('/')[1]);
 })
 
