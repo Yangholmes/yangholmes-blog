@@ -1,10 +1,10 @@
 name: project build and deploy
 
 on:
-  pull_request:
-    types:
-      - closed
-    # Sequence of patterns matched against refs/heads
+  # pull_request:
+  #   types:
+  #     - closed
+  push:
     branches:
       - main
 
