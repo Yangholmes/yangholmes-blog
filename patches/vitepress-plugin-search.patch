@@ -1,0 +1,83 @@
+diff --git a/dist/Search.vue b/dist/Search.vue
+index f8062c1320781e38d33d9f760539ac941e8854d1..73e2e1c97bd26c3bc7e4773a4066e14b379fa306 100644
+--- a/dist/Search.vue
++++ b/dist/Search.vue
+@@ -45,7 +45,7 @@ const result = computed(() => {
+       var preview = item["p"];
+       var link = item["l"];
+       var anchor = item["a"];
+-      link = link.split(" ").join("-");
++      // link = link.split(" ").join("-");
+       search.push({id: i, link, title, preview, anchor });
+     }
+     return search as any[];
+@@ -110,7 +110,7 @@ onMounted(async () => {
+   };
+ 
+   window.addEventListener("keydown", handleSearchHotKey);
+-  
++
+ 
+ });
+ 
+@@ -125,32 +125,32 @@ function cleanSearch() {
+   searchTerm.value = "";
+ }
+ 
+-const handleNavigation = (e: KeyboardEvent) => {  
++const handleNavigation = (e: KeyboardEvent) => {
+   if(!document.getElementsByClassName("search-group")[0])
+     return
+ 
+   if(e.key == 'ArrowUp' || e.key == 'ArrowDown'){
+     const currentIndex = linksOrder.value.indexOf(focused.value)
+     if(e.key == 'ArrowUp'){
+-      const previousIndex = currentIndex == 0 ? linksOrder.value.length - 1: currentIndex - 1 
++      const previousIndex = currentIndex == 0 ? linksOrder.value.length - 1: currentIndex - 1
+       focused.value =  linksOrder.value[previousIndex]
+     }
+     if(e.key == 'ArrowDown'){
+       const nextIndex = currentIndex > linksOrder.value.length - 2 ? 0 : currentIndex + 1
+       focused.value = linksOrder.value[nextIndex]
+     }
+-    
++
+     if(currentIndex < 5 ){
+         const el = modal.value!.getElementsByClassName("VPPluginSearch-search-group")[0]
+         el?.scrollIntoView(true)
+     }else
+        document.getElementById(linksOrder.value[focused.value])?.scrollIntoView(true)
+-      
++
+       nextTick()
+   }
+   if(e.key == "Enter"){
+     router.go(VPData.site.value.base + modal.value!.getElementsByClassName('link-focused')[0].getAttribute("href")?.replace(origin.value, ""))
+-  }  
++  }
+ }
+ </script>
+ 
+@@ -204,19 +204,19 @@ const handleNavigation = (e: KeyboardEvent) => {
+             <div class="VPPluginSearch-search-list">
+               <div class="search-group"
+                 v-for="(group, groupKey) of groupedResults"
+-                :key="groupKey"                
++                :key="groupKey"
+               >
+                 <span class="VPPluginSearch-search-group">{{
+                   groupKey
+                     ? groupKey.toString()[0].toUpperCase() +
+-                      groupKey.toString().slice(1) 
++                      groupKey.toString().slice(1)
+                     : "Home"
+                 }}</span>
+                 <a
+                   :href="origin + item.link"
+                   v-for="(item, index) in group"
+                   :key="item.id"
+-                  @click="cleanSearch"                  
++                  @click="cleanSearch"
+                   @mouseenter="focused = item.id"
+                   :class="{'link-focused':focused == item.id}"
+                   :id="index.toString()"
