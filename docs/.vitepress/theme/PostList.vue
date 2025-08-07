@@ -8,12 +8,15 @@ const route = useRoute();
 
 const posts = ref<PostItem[]>([])
 
+
 watch(() => route.path, (val) => {
   const category = page.value.relativePath.split('/')[0]
   posts.value = theme.value.posts[category].map((post) => {
     return {
       ...post,
-      createDate: post.createDate ? new Date(post.createDate).toLocaleDateString() : '-'
+      createDate: post.createDate
+        ? `写于 ${new Date(post.createDate).toLocaleDateString()}`
+        : '忘记哪天写的了'
     }
   })
 }, { immediate: true })
@@ -25,10 +28,11 @@ watch(() => route.path, (val) => {
   <div class="post-list">
     <Content />
     <ul class="list">
-      <li v-for="post in posts" :key="post.url">
+      <li class="item" v-for="post in posts" :key="post.url">
         <a :href="post.url">
           <p class="title">{{ post.title }}</p>
-          <p class="meta">创建时间：{{ post.createDate }}</p>
+          <p class="meta">{{ post.createDate }}</p>
+          <!-- <p>{{ post.excerpt }}</p> -->
         </a>
       </li>
     </ul>
@@ -49,13 +53,16 @@ watch(() => route.path, (val) => {
     align-items: flex-start;
     gap: 2em;
 
-    .title {
-      color: var(--color--level-5);
-      font-size: 1.2em;
-      font-weight: 600;
-    }
-    .meta {
-      color: var(--color--level-3);
+    .item {
+
+      .title {
+        color: var(--color--level-5);
+        font-size: 1.2em;
+        font-weight: 600;
+      }
+      .meta {
+        color: var(--color--level-3);
+      }
     }
   }
 }

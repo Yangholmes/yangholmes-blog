@@ -13,7 +13,7 @@ export function useComment(el: ShallowRef<HTMLDivElement | null>) {
     script.src = 'https://utteranc.es/client.js';
     script.setAttribute('repo', 'Yangholmes/yangholmes-blog');
     script.setAttribute('issue-term', 'pathname');
-    script.setAttribute('theme', isDark ? 'github-dark' : 'github-light');
+    script.setAttribute('theme', isDark.value ? 'github-dark' : 'github-light');
     script.setAttribute('crossorigin', 'anonymous');
     el.value.appendChild(script);
     scriptRef.value = script;

@@ -12,6 +12,7 @@ export type PostItem = {
   category: string;
   url: string;
   createDate?: string | number;
+  excerpt?: string;
 }
 
 export function getAllCategories() {
@@ -49,12 +50,16 @@ export function getAllPosts() {
         } else {
           path = join(catDir, post);
         }
-        const frontmatter = matter.read(path);
+        const frontmatter = matter.read(path, {
+          // excerpt: true,
+        });
         return {
           title: post.replace('.md', ''),
           category: cat,
           url: `/${cat}/${post.replace('.md', '')}`,
           createDate: frontmatter.data.createDate,
+          excerpt: frontmatter.excerpt,
+          // frontmatter
         }
       }).sort((a, b) => {
         const at = a.createDate ? new Date(a.createDate).getTime() : 0;
