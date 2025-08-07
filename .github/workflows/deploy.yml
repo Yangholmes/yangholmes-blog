@@ -37,7 +37,7 @@ jobs:
 
     - name: 安装依赖
       run: |
-        pnpm install
+        pnpm install --frozen-lockfile
 
     - name: 编译
       run: |
