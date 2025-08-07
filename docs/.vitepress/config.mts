@@ -32,6 +32,9 @@ export default defineConfigWithTheme({
     }
   },
 
+  head: [
+    ['link', { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }]
+  ],
 
   transformHtml(code) {
     if (MS_CLARITY_ID) {

@@ -1,5 +1,3 @@
-// https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 
@@ -14,6 +12,7 @@ import 'vitepress/dist/client/theme-default/styles/vars.css';
 import 'vitepress/dist/client/theme-default/styles/icons.css';
 
 import Layout from './Layout.vue'
+import Footer from './Footer.vue';
 
 export default {
   extends: DefaultTheme,
@@ -21,5 +20,6 @@ export default {
 
   enhanceApp({ app, router, siteData }) {
     // 注册全局组件或插件
+    app.component('Footer', Footer)
   }
 } satisfies Theme

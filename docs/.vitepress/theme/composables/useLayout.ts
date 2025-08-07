@@ -4,8 +4,7 @@
  */
 
 import { useData } from 'vitepress';
-import { computed, shallowRef, watch } from 'vue';
-import Page from '../Page.vue';
+import { computed } from 'vue';
 
 export default function useLayout() {
   const { frontmatter } = useData();

@@ -13,6 +13,7 @@ import {useComment} from './composables/useComment';
     <div class="vp-doc">
       <Content />
       <div ref="comment-ref" />
+      <Footer />
     </div>
   </div>
 </template>

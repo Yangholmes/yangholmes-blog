@@ -8,7 +8,6 @@ const route = useRoute();
 
 const posts = ref<PostItem[]>([])
 
-
 watch(() => route.path, (val) => {
   const category = page.value.relativePath.split('/')[0]
   posts.value = theme.value.posts[category].map((post) => {
@@ -36,12 +35,13 @@ watch(() => route.path, (val) => {
         </a>
       </li>
     </ul>
+    <Footer />
   </div>
 </template>
 
 <style scoped>
 .post-list {
-  padding-left: 3em;
+  padding: 0 3em;
   margin: 3em 0;
 
   /* font-size: 1.2em; */
