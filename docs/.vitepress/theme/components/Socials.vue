@@ -25,6 +25,6 @@ const socialLinks = computed(() => {
   align-items: center;
   justify-content: center;
 
-  gap: 1em;
+  gap: 1rem;
 }
 </style>

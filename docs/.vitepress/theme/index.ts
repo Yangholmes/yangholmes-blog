@@ -1,7 +1,7 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 
-import './style.less';
+import './global.less';
 import 'vitepress/dist/client/theme-default/styles/components/vp-doc.css'
 import 'vitepress/dist/client/theme-default/styles/components/vp-code.css';
 import 'vitepress/dist/client/theme-default/styles/components/vp-code-group.css';

@@ -22,13 +22,13 @@ import {useComment} from './composables/useComment';
 .page {
   width: 100%;
   height: 100%;
-  padding: 0 3em;
+  padding: 0 3rem;
 
   overflow: auto;
 
   .vp-doc {
     width: 100%;
-    margin: 3em 0;
+    margin: 3rem 0;
     /* height: 100%; */
   }
 }

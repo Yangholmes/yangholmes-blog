@@ -45,31 +45,36 @@ const catInRoute = computed(() => {
 
 <style lang="less" scoped>
   .sidebar {
-    flex: 1;
+    width: 100%;
+    min-width: 208px;
     height: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
 
     background-color: var(--color--level-3);
-    color: #FFF;
+    color: var(--c-text-light-1);
     font-weight: 900;
-    font-size: 1.25em;
+    font-size: 1.25rem;
 
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    transform: translateX(0);
+    transition: transform .3s;
 
     .top-bar,
     .bottom-bar {
       width: 100%;
-      height: 3em;
-      padding-right: 3em;
+      height: 3rem;
+      padding-right: 3rem;
 
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: .5em;
+      gap: .5rem;
 
       position: absolute;
     }
@@ -88,11 +93,11 @@ const catInRoute = computed(() => {
     }
 
     ul.nav {
-      padding-right: 3em;
+      padding-right: 3rem;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      gap: 1.25em;
+      gap: 1.25rem;
 
       li {
         text-align: right;
@@ -103,5 +108,12 @@ const catInRoute = computed(() => {
       }
     }
   }
+
+
+@media (width <= 840px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+}
 
 </style>

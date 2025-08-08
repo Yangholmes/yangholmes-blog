@@ -20,12 +20,14 @@ const layoutName = useLayout();
   <NotFound v-if="page.isNotFound"/>
 
   <div class="main-layout" v-else>
-    <Sidebar />
-    <div class="content">
+    <div class="leftside">
+      <Sidebar />
+    </div>
+    <main class="content">
       <PostList v-if="layoutName === 'PostList'"/>
       <Home v-else-if="layoutName === 'Home'"/>
       <Page v-else />
-    </div>
+    </main>
   </div>
 </template>
 
@@ -38,6 +40,13 @@ const layoutName = useLayout();
   align-items: center;
   justify-content: center;
 
+  .leftside {
+    flex: 1;
+    height: 100%;
+    transition: flex .3s;
+    position: relative;
+  }
+
   .content {
     flex: 3;
     height: 100%;
@@ -46,6 +55,12 @@ const layoutName = useLayout();
     flex-direction: column;
     justify-content: flex-start;
     overflow: auto;
+  }
+
+  @media (width <= 840px) {
+    .leftside {
+      flex: 0;
+    }
   }
 }
 </style>

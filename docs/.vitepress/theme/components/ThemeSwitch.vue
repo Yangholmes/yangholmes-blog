@@ -13,7 +13,7 @@ const toggleAppearance = () => {
 <template>
   <!-- <VPSwitchAppearance /> -->
   <div
-    class="theme-switch"
+    class="round-button theme-switch"
     @click="toggleAppearance"
   >
     <span class="icon vpi-sun sun" />
@@ -23,27 +23,6 @@ const toggleAppearance = () => {
 
 <style lang="less">
 .theme-switch {
-  width: 1.5em;
-  height: 1.5em;
-
-  border-radius: 9999em;
-  border: 2px solid var(--vp-c-divider);
-  background-color: var(--vp-c-gray-soft);
-
-  position: relative;
-
-  .icon {
-    display: inline-block;
-    color: var(--vp-c-divider);
-
-    transition: opacity .2s !important;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
   .sun {
     opacity: 1;
   }

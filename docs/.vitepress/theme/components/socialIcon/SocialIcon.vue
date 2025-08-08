@@ -28,8 +28,8 @@ watch(() => props.icon, (val) => {
 
 <style lang="less">
 .social-icon {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-color: var(--color--level-5);
 
   mask-image: var(--mask-image);

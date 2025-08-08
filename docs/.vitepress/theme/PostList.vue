@@ -41,23 +41,23 @@ watch(() => route.path, (val) => {
 
 <style scoped>
 .post-list {
-  padding: 0 3em;
-  margin: 3em 0;
+  padding: 0 3rem;
+  margin: 3rem 0;
 
-  /* font-size: 1.2em; */
+  /* font-size: 1.2rem; */
 
   .list {
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: flex-start;
-    gap: 2em;
+    gap: 2rem;
 
     .item {
 
       .title {
         color: var(--color--level-5);
-        font-size: 1.2em;
+        font-size: 1.2rem;
         font-weight: 600;
       }
       .meta {

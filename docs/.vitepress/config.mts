@@ -18,15 +18,17 @@ export default defineConfigWithTheme({
     plugins: [
       SearchPlugin({
         ...flexSearchIndexOptions,
-        previewLength: 100, //搜索结果预览长度
+        previewLength: 50, //搜索结果预览长度
         buttonLabel: "搜索",
         placeholder: "输入关键词",
+        encode: false,
+        tokenize: 'full'
       })
     ],
     css: {
       postcss: {
         plugins:[
-          autoprefixer()
+          autoprefixer(),
         ]
       }
     }

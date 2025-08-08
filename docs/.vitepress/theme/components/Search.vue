@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import Search from 'vitepress-plugin-search/Search.vue';
+
 </script>
 
 <template>
@@ -12,29 +13,29 @@ import Search from 'vitepress-plugin-search/Search.vue';
 <style lang="less" scoped>
 .plugin {
   :deep(.DocSearch-Button) {
-    border-radius: 9999em;
+    border-radius: 9999rem;
   }
 }
 
 // .search {
-//   width: 1.5em;
-//   height: 1.5em;
+  // width: 1.5rem;
+  // height: 1.5rem;
 
-//   border-radius: 9999em;
-//   border: 2px solid var(--vp-c-divider);
-//   background-color: var(--vp-c-gray-soft);
+  // border-radius: 9999rem;
+  // border: 2px solid var(--vp-c-divider);
+  // background-color: var(--vp-c-gray-soft);
 
-//   position: relative;
+  // position: relative;
 
 //   .icon {
-//     display: inline-block;color: var(--vp-c-divider);
+    // display: inline-block;color: var(--vp-c-divider);
 
-//     transition: opacity .2s !important;
+    // transition: opacity .2s !important;
 
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
 //   }
 // }
 </style>

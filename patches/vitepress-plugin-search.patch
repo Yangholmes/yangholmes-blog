@@ -1,5 +1,5 @@
 diff --git a/dist/Search.vue b/dist/Search.vue
-index f8062c1320781e38d33d9f760539ac941e8854d1..73e2e1c97bd26c3bc7e4773a4066e14b379fa306 100644
+index f8062c1320781e38d33d9f760539ac941e8854d1..037903e95015c1be57cf328716d134778a95b180 100644
 --- a/dist/Search.vue
 +++ b/dist/Search.vue
 @@ -45,7 +45,7 @@ const result = computed(() => {
@@ -81,3 +81,243 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..73e2e1c97bd26c3bc7e4773a4066e14b
                    @mouseenter="focused = item.id"
                    :class="{'link-focused':focused == item.id}"
                    :id="index.toString()"
+@@ -239,35 +239,16 @@ const handleNavigation = (e: KeyboardEvent) => {
+         </div>
+       </Teleport>
+     </ClientOnly>
+-    <div id="docsearch" @click="openSearch()">
+-      <button
+-        type="button"
+-        class="DocSearch DocSearch-Button"
++    <div
++      id="docsearch"
++      @click="openSearch()"
++    >
++      <div
++        class="round-button doc-search-button"
+         aria-label="Search"
+       >
+-        <span class="DocSearch-Button-Container">
+-          <svg
+-            width="20"
+-            height="20"
+-            class="DocSearch-Search-Icon"
+-            viewBox="0 0 20 20"
+-          >
+-            <path
+-              d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
+-              stroke="currentColor"
+-              fill="none"
+-              fill-rule="evenodd"
+-              stroke-linecap="round"
+-              stroke-linejoin="round"
+-            ></path>
+-          </svg>
+-          <span class="DocSearch-Button-Placeholder">{{buttonLabel}}</span>
+-        </span>
+-        <span class="DocSearch-Button-Keys">
+-          <span class="DocSearch-Button-Key" ref="metaKey">Meta</span>
+-          <span class="DocSearch-Button-Key">K</span>
+-        </span>
+-      </button>
++        <span class="icon vpi-search" />
++      </div>
+     </div>
+   </div>
+ </template>
+@@ -389,17 +370,6 @@ a.link-focused .VPPluginSearch-search-item,
+   /* box-shadow: inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5), 0 3px 8px 0 #555a64; */
+ }
+ 
+-.DocSearch-Button-Keys {
+-  display: flex;
+-  min-width: calc(40px + 0.8em);
+-}
+-
+-@media (min-width: 768px) {
+-  .DocSearch-Button .DocSearch-Button-Key {
+-    display: inline-block;
+-  }
+-}
+-
+ @media (max-width: 768px) {
+   .VPPluginSearch-modal {
+     max-width: 100%;
+@@ -432,49 +402,6 @@ a.link-focused .VPPluginSearch-search-item,
+   box-sizing: border-box;
+ }
+ 
+-.DocSearch-Button .DocSearch-Button-Key {
+-  margin-top: 2px;
+-  border: 1px solid var(--vt-c-divider);
+-  border-right: none;
+-  border-radius: 4px 0 0 4px;
+-  display: none;
+-  padding-left: 6px;
+-  height: 22px;
+-  line-height: 22px;
+-  transition: color 0.5s, border-color 0.5s;
+-  min-width: 0;
+-}
+-.DocSearch-Button-Key {
+-  font-size: 12px;
+-  font-weight: 500;
+-  height: 20px;
+-  margin: 0;
+-  width: auto;
+-  color: var(--vt-c-text-3);
+-  transition: color 0.5s;
+-  display: inline-block;
+-  padding: 0 1px;
+-}
+-.DocSearch-Button-Key {
+-  align-items: center;
+-  background: var(--c-brand-light);
+-  border-radius: 3px;
+-  box-shadow: var(--c-brand);
+-  color: var(--docsearch-muted-color);
+-  display: flex;
+-  height: 18px;
+-  justify-content: center;
+-  margin-right: 0.4em;
+-  padding-bottom: 2px;
+-  position: relative;
+-  top: -1px;
+-  width: 20px;
+-}
+-
+-body.dark .DocSearch-Button:hover {
+-  box-shadow: none;
+-}
+-
+ .DocSearch {
+   --docsearch-primary-color: var(--vt-c-brand);
+   --docsearch-highlight-color: var(--docsearch-primary-color);
+@@ -506,127 +433,10 @@ body.dark .DocSearch-Button:hover {
+   border: 1px solid var(--vt-c-brand);
+ }
+ 
+-.DocSearch-Button-Container {
+-  align-items: center;
+-  display: flex;
+-}
+-
+-.DocSearch-Button {
+-  display: flex;
+-  justify-content: center;
+-  align-items: center;
+-  margin: 0;
+-  width: 48px;
+-  height: 55px;
+-  background: transparent;
+-  border: none;
+-}
+-
+-.DocSearch-Button:hover {
+-  background: transparent;
+-}
+-.DocSearch-Button:focus {
+-  outline: 1px dotted;
+-  outline: 5px auto -webkit-focus-ring-color;
+-}
+-.DocSearch-Button:focus:not(:focus-visible) {
+-  outline: none !important;
+-}
+-
+-@media (min-width: 768px) {
+-  .DocSearch-Button {
+-    justify-content: flex-start;
+-    width: 100%;
+-  }
+-}
+-
+ .DocSearch-MagnifierLabel {
+   color: var(--vp-c-brand-dark);
+ }
+ 
+-.DocSearch-Button .DocSearch-Search-Icon {
+-  transition: color 0.5s;
+-  fill: currentColor;
+-  width: 18px;
+-  height: 18px;
+-  position: relative;
+-}
+-
+-@media (min-width: 768px) {
+-  .DocSearch-Button .DocSearch-Search-Icon {
+-    top: 1px;
+-    margin-right: 10px;
+-    width: 15px;
+-    height: 15px;
+-  }
+-}
+-
+-.DocSearch-Button:hover .DocSearch-Search-Icon {
+-  color: var(--vt-c-text-1);
+-}
+-
+-.DocSearch-Button-Placeholder {
+-  transition: color 0.5s;
+-  font-size: 13px;
+-  font-weight: 500;
+-  color: #66666699;
+-  display: none;
+-  padding: 0 10px 0 0;
+-}
+-
+-@media (min-width: 960px) {
+-  .DocSearch-Button-Placeholder {
+-    display: inline-block;
+-  }
+-}
+-
+-.DocSearch-Button:hover .DocSearch-Button-Placeholder {
+-  color: var(--vt-c-text-1);
+-}
+-
+-.DocSearch-Button .DocSearch-Button-Key {
+-  margin-top: 2px;
+-  border: 1px solid var(--vt-c-divider);
+-  border-right: none;
+-  border-radius: 4px 0 0 4px;
+-  display: none;
+-  padding-left: 6px;
+-  height: 22px;
+-  line-height: 22px;
+-  transition: color 0.5s, border-color 0.5s;
+-  min-width: 0;
+-}
+-
+-.DocSearch-Button .DocSearch-Button-Key + .DocSearch-Button-Key {
+-  border-right: 1px solid var(--vt-c-divider);
+-  border-left: none;
+-  border-radius: 0 4px 4px 0;
+-  padding-left: 2px;
+-  padding-right: 6px;
+-}
+-
+-.DocSearch-Button:hover .DocSearch-Button-Key {
+-  /* border-color: var(--vt-c-brand-light); */
+-  color: var(--vt-c-brand-light);
+-}
+-
+-@media (min-width: 768px) {
+-  .DocSearch-Button .DocSearch-Button-Key {
+-    display: inline-block;
+-  }
+-}
+-
+-.DocSearch-Button-Key {
+-  font-size: 12px;
+-  font-weight: 500;
+-  height: 20px;
+-  margin: 0;
+-  width: auto;
+-  color: var(--vt-c-text-3);
+-  transition: color 0.5s;
+-  display: inline-block;
+-  padding: 0 1px;
+-}
+ 
+ .VPPluginSearch-search-group{
+   color: var(--vp-c-brand-1)
