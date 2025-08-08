@@ -30,7 +30,7 @@ const thisYear = new Date().getFullYear();
   justify-content: center;
   gap: .5em;
 
-  background-color: #f0f0f0;
+  background-color: var(--color--level-2);
   border: 2px solid var(--color--level-3);
   border-radius: 20px;
 

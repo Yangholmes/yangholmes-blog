@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import {useData, useRoute} from 'vitepress';
 import {computed} from 'vue';
-import Search from 'vitepress-plugin-search/Search.vue';
-import Socials from './Socials.vue';
+// import Search from 'vitepress-plugin-search/Search.vue';
+import Search from './components/Search.vue';
+import Socials from './components/Socials.vue';
+import ThemeSwitch from './components/ThemeSwitch.vue';
 
-const { theme, page, frontmatter } = useData();
+const { theme } = useData();
 
 const route = useRoute();
 
@@ -21,6 +23,7 @@ const catInRoute = computed(() => {
 <template>
   <div class="sidebar">
     <div class="top-bar">
+      <ThemeSwitch />
       <Search class="search" />
     </div>
     <ul class="nav">
@@ -66,6 +69,7 @@ const catInRoute = computed(() => {
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      gap: .5em;
 
       position: absolute;
     }

@@ -2,7 +2,6 @@
 import {useData} from 'vitepress';
 import {computed} from 'vue';
 
-import { VPSocialLink } from 'vitepress/theme';
 import SocialIcon from './socialIcon/SocialIcon.vue';
 
 const { theme, page, frontmatter } = useData();

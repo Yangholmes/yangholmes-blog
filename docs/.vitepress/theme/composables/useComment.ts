@@ -1,12 +1,12 @@
 import { useData } from 'vitepress';
-import { onUnmounted, shallowRef, ShallowRef, watchEffect } from 'vue';
+import { onUnmounted, shallowRef, ShallowRef, watch } from 'vue';
 
 export function useComment(el: ShallowRef<HTMLDivElement | null>) {
   const { isDark } = useData()
 
   const scriptRef = shallowRef<HTMLScriptElement | null>(null);
 
-  watchEffect(() => {
+  watch(() => el.value, () => {
     if (!el.value) return;
 
     let script = document.createElement('script');
