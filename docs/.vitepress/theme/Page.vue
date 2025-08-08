@@ -12,9 +12,9 @@ import {useComment} from './composables/useComment';
   <div class="page">
     <div class="vp-doc">
       <Content />
-      <div ref="comment-ref" />
-      <Footer />
     </div>
+    <div ref="comment-ref" />
+    <Footer />
   </div>
 </template>
 
@@ -22,13 +22,13 @@ import {useComment} from './composables/useComment';
 .page {
   width: 100%;
   height: 100%;
-  padding: 0 3rem;
+  padding: 3rem;
 
   overflow: auto;
 
   .vp-doc {
     width: 100%;
-    margin: 3rem 0;
+    /* margin-top: 3rem; */
     /* height: 100%; */
   }
 }

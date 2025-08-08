@@ -4,14 +4,15 @@
 
 <template>
   <div class="home">
-    <Content />
+    <div class="vp-doc">
+      <Content />
+    </div>
     <Footer />
   </div>
 </template>
 
 <style lang="less">
 .home {
-  padding: 0 3rem;
-  margin: 3rem 0;
+  padding: 3rem;
 }
 </style>
