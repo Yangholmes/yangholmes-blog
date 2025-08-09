@@ -6,9 +6,9 @@ import NotFound from './NotFound.vue';
 import Home from './Home.vue';
 import Page from './Page.vue';
 import PostList from './PostList.vue';
-import Footer from './Footer.vue';
 
 import useLayout from './composables/useLayout';
+import NavBar from './components/NavBar.vue';
 
 const { page } = useData();
 
@@ -20,10 +20,11 @@ const layoutName = useLayout();
   <NotFound v-if="page.isNotFound"/>
 
   <div class="main-layout" v-else>
-    <div class="leftside">
+    <div class="left-side">
       <Sidebar />
     </div>
     <main class="content">
+      <NavBar />
       <PostList v-if="layoutName === 'PostList'"/>
       <Home v-else-if="layoutName === 'Home'"/>
       <Page v-else />
@@ -40,7 +41,7 @@ const layoutName = useLayout();
   align-items: center;
   justify-content: center;
 
-  .leftside {
+  .left-side {
     flex: 1;
     height: 100%;
     transition: flex .3s;
@@ -55,10 +56,12 @@ const layoutName = useLayout();
     flex-direction: column;
     justify-content: flex-start;
     overflow: auto;
+
+    position: relative;
   }
 
   @media (width <= 840px) {
-    .leftside {
+    .left-side {
       flex: 0;
     }
   }

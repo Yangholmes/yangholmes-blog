@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import {useData} from 'vitepress';
-import VPSwitchAppearance from 'vitepress/dist/client/theme-default/components/VPSwitchAppearance.vue';
-import {inject} from 'vue';
+import RoundButton from './RoundButton.vue';
 
-const { isDark, theme } = useData()
+const { isDark } = useData()
 
 const toggleAppearance = () => {
   isDark.value = !isDark.value
@@ -11,34 +10,46 @@ const toggleAppearance = () => {
 </script>
 
 <template>
-  <!-- <VPSwitchAppearance /> -->
   <div
-    class="round-button theme-switch"
+    class="theme-switch"
+    :class="{ 'is-dark': !isDark }"
     @click="toggleAppearance"
   >
-    <span class="icon vpi-sun sun" />
-    <span class="icon vpi-moon moon" />
+    <RoundButton
+      class="switch sun" icon="sun"
+    />
+    <RoundButton
+      class="switch moon" icon="moon"
+    />
   </div>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
 .theme-switch {
+  position: relative;
+
+  .switch {
+    transition: opacity .3s;
+  }
+
   .sun {
     opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   .moon {
     opacity: 0;
   }
-}
 
-.dark {
-  .sun {
-    opacity: 0;
-  }
-
-  .moon {
-    opacity: 1;
+  &.is-dark {
+    .sun {
+      opacity: 0;
+    }
+    .moon {
+      opacity: 1;
+    }
   }
 }
 </style>

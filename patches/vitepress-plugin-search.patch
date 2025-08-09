@@ -1,8 +1,20 @@
 diff --git a/dist/Search.vue b/dist/Search.vue
-index f8062c1320781e38d33d9f760539ac941e8854d1..037903e95015c1be57cf328716d134778a95b180 100644
+index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5b4abf5a4 100644
 --- a/dist/Search.vue
 +++ b/dist/Search.vue
-@@ -45,7 +45,7 @@ const result = computed(() => {
+@@ -4,6 +4,11 @@ import { useData, withBase, useRouter } from "vitepress";
+ 
+ // @ts-ignore
+ import Index from "./module/index.js";
++import {JSX} from 'vue/jsx-runtime';
++
++const slots = defineSlots<{
++  default(): JSX.Element;
++}>()
+ 
+ //TODO: delete deprecate code
+ const VPData = useData();
+@@ -45,7 +50,7 @@ const result = computed(() => {
        var preview = item["p"];
        var link = item["l"];
        var anchor = item["a"];
@@ -11,7 +23,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..037903e95015c1be57cf328716d13477
        search.push({id: i, link, title, preview, anchor });
      }
      return search as any[];
-@@ -110,7 +110,7 @@ onMounted(async () => {
+@@ -110,7 +115,7 @@ onMounted(async () => {
    };
  
    window.addEventListener("keydown", handleSearchHotKey);
@@ -20,7 +32,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..037903e95015c1be57cf328716d13477
  
  });
  
-@@ -125,32 +125,32 @@ function cleanSearch() {
+@@ -125,32 +130,32 @@ function cleanSearch() {
    searchTerm.value = "";
  }
  
@@ -58,7 +70,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..037903e95015c1be57cf328716d13477
  }
  </script>
  
-@@ -204,19 +204,19 @@ const handleNavigation = (e: KeyboardEvent) => {
+@@ -204,19 +209,19 @@ const handleNavigation = (e: KeyboardEvent) => {
              <div class="VPPluginSearch-search-list">
                <div class="search-group"
                  v-for="(group, groupKey) of groupedResults"
@@ -81,7 +93,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..037903e95015c1be57cf328716d13477
                    @mouseenter="focused = item.id"
                    :class="{'link-focused':focused == item.id}"
                    :id="index.toString()"
-@@ -239,35 +239,16 @@ const handleNavigation = (e: KeyboardEvent) => {
+@@ -239,35 +244,11 @@ const handleNavigation = (e: KeyboardEvent) => {
          </div>
        </Teleport>
      </ClientOnly>
@@ -89,14 +101,8 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..037903e95015c1be57cf328716d13477
 -      <button
 -        type="button"
 -        class="DocSearch DocSearch-Button"
-+    <div
-+      id="docsearch"
-+      @click="openSearch()"
-+    >
-+      <div
-+        class="round-button doc-search-button"
-         aria-label="Search"
-       >
+-        aria-label="Search"
+-      >
 -        <span class="DocSearch-Button-Container">
 -          <svg
 -            width="20"
@@ -120,8 +126,11 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..037903e95015c1be57cf328716d13477
 -          <span class="DocSearch-Button-Key">K</span>
 -        </span>
 -      </button>
-+        <span class="icon vpi-search" />
-+      </div>
++    <div
++      id="docsearch"
++      @click="openSearch()"
++    >
++      <slot name="default" />
      </div>
    </div>
  </template>

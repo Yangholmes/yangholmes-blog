@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import {useData, useRoute} from 'vitepress';
-import {computed} from 'vue';
-// import Search from 'vitepress-plugin-search/Search.vue';
+import {computed, ref} from 'vue';
 import Search from './components/Search.vue';
 import Socials from './components/Socials.vue';
 import ThemeSwitch from './components/ThemeSwitch.vue';
+import SidebarToggleHandler from './components/SidebarToggleHandler.vue';
 
 const { theme } = useData();
 
@@ -18,10 +18,24 @@ const catInRoute = computed(() => {
   return decodeURIComponent(route.path.split('/')[1]);
 })
 
+const shownInMobile = ref(false);
+
+function onToggle() {
+  shownInMobile.value = !shownInMobile.value;
+}
+
 </script>
 
 <template>
-  <div class="sidebar">
+  <div
+    class="sidebar"
+    :class="{ 'shown-in-mobile': shownInMobile }"
+  >
+    <SidebarToggleHandler
+      class="handler"
+      :value="shownInMobile"
+      @click="onToggle"
+    />
     <div class="top-bar">
       <ThemeSwitch />
       <Search class="search" />
@@ -61,14 +75,22 @@ const catInRoute = computed(() => {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 11;
 
     transform: translateX(0);
     transition: transform .3s;
 
+    .handler {
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+    }
+
     .top-bar,
     .bottom-bar {
       width: 100%;
-      height: 3rem;
+      height: var(--tool-bar-height);
       padding-right: 3rem;
 
       display: flex;
@@ -109,10 +131,13 @@ const catInRoute = computed(() => {
     }
   }
 
-
 @media (width <= 840px) {
   .sidebar {
     transform: translateX(-100%);
+
+    &.shown-in-mobile {
+      transform: translateX(0);
+    }
   }
 }
 
