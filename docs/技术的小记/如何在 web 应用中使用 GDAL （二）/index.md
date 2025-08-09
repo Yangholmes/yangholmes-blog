@@ -3,15 +3,15 @@ createDate: 2025/08/10
 title: 如何在 web 应用中使用 GDAL （二）
 ---
 
-# 如何在 web 应用中使用 GDAL （二）
+## 如何在 web 应用中使用 GDAL （二）
 
 **2025/08/10**
 
 [上一篇](https://dev.to/yangholmes/ru-he-zai-web-ying-yong-zhong-shi-yong-gdal--mad)已经把编译搞定了，这一篇来看看怎么用。
 
-# WebAssembly 基本用法
+## WebAssembly 基本用法
 
-## 实例化 wasm
+### 实例化 wasm
 
 WebAssembly 名字带 assembly ，确实很像汇编语言，它位于中间表达和机器码之间。跟使用其他 JavaScript 库不同， WebAssembly 并不能像 esmodule 那样通过 `import` 指令将代码加载到线程中，也不能使用 `<script>` 加载，因为它并不是 JavaScript 。
 
@@ -38,7 +38,7 @@ fetch("some.wasm")
 
 所有的导出都会挂载在 `instance.exports` 上，通过查阅源码或者 wasm 作者提供的文档，我们就可以知道可以调用的接口有哪些，也可以知道接口参数是什么。
 
-## 内存管理
+### 内存管理
 
 JavaScript 开发者向来不太关心内存，仿佛有一个专门的管家在管理着内存。和 JavaScript 不同的是，WebAssembly 需要手动管理内存，才能正常地读写。WebAssembly 的内存是连续无类型的线性内存，犹如一个数组，有专门的指令进行读写，这与 C/C++ 指针如出一辙。内存在 JavaScript 中申请，加载的时候传入 wasm 的实例中：
 
@@ -56,7 +56,7 @@ WebAssembly 和调用它的代码运行在同一个线程，和使用 transfer �
 
 但 WebAssembly 实例化提供初始 memory 并**不是必须的**， wasm 也可以自己申请内存。使用 JavaScript 提供内存的好处在于数据共享和复制，在图形、音视频处理等场景下需要大量传输数据，如果通过函数参数传输，数据需要先经过序列化/反序列换操作，再深拷贝，效率远不及传输一个内存地址。此外，JavaScript 创建的内存可以提供给多个 wasm 模块使用，利用这个特性可以实现 wasm 不同模块间的协作。
 
-## 表机制
+### 表机制
 
 除了向外暴露的接口以外，WebAssembly 还可能需要调用 JavaScript 的功能，比如果将 `console.log` 函数映射到 C 中作为标准输出，可以这么操作：
 
@@ -150,11 +150,11 @@ const { instance } = await WebAssembly.instantiate(bytes, {
 instance.exports.safe_log(messagePtr);
 ```
 
-## 线程的管理
+### 线程的管理
 
 WebAssembly 代码执行时间长度无法预测，且 WebAssembly 和调用方同一个线程中运行，如果在 JavaScript 主线程上调用 wasm 接口，大概率阻塞 UI 线程。所以一般地，我们会启用一个 worker 来执行 WebAssembly ，避免卡死。
 
-# emscripten 胶水代码
+## emscripten 胶水代码
 
 这么看，WebAssembly 的使用还是比较复杂的，要搞清楚导出接口列表和参数，熟悉内存的使用，做好 JavaScript 函数的映射，除了要能用以外，还要保障安全。有没有办法简化这些操作呢？有的，朋友，有的。
 
@@ -188,7 +188,7 @@ WebAssembly 实例的导出函数全部都挂载到输出的 `Module` 上，通�
 
 ![食用指南](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7a2bf539ptd6ka4u2pv5.png)
 
-# 小试牛刀
+## 小试牛刀
 
 这里展示一个调用的例子，我们读取一个 tiff 文件，并将 tiff 的信息读取出来。文件目录：
 
@@ -333,7 +333,7 @@ Band 2 Block=2800x31 Type=Byte, ColorInterp=Green
 Band 3 Block=2800x31 Type=Byte, ColorInterp=Blue
 ```
 
-# 结语
+## 结语
 
 本篇介绍了如何 WebAssembly ，在后面的篇章，将会介绍
 
