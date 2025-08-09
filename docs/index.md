@@ -21,6 +21,8 @@ pagefind-indexed: false
 
 - <input type="checkbox" disabled /> 搬迁老旧文章
 
+- <input type="checkbox" disabled /> 完成文章目录插件
+
 - <input type="checkbox" disabled /> 新增评论区，使用自托管评论组件，支持匿名
 
 - <input type="checkbox" disabled /> 设计首页
