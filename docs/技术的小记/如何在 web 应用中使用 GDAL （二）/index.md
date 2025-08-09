@@ -3,7 +3,7 @@ createDate: 2025/08/10
 title: 如何在 web 应用中使用 GDAL （二）
 ---
 
-## 如何在 web 应用中使用 GDAL （二）
+# 如何在 web 应用中使用 GDAL （二）
 
 **2025/08/10**
 
