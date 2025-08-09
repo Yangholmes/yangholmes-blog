@@ -21,8 +21,8 @@ const props = defineProps<{
 
 <style lang="less" scoped>
 .toggle-handler {
-  width: calc(var(--round-button-size) / 1.25);
-  height: var(--round-button-size);
+  width: calc(var(--round-button-size) * 1);
+  height: calc(var(--round-button-size) * 1.5);
 
   display: flex;
   justify-content: center;

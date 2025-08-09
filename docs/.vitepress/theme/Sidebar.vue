@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {useData, useRoute} from 'vitepress';
-import {computed, ref} from 'vue';
+import {computed, ref, Teleport} from 'vue';
 import Search from './components/Search.vue';
 import Socials from './components/Socials.vue';
 import ThemeSwitch from './components/ThemeSwitch.vue';
@@ -54,6 +54,13 @@ function onToggle() {
     <div class="bottom-bar">
       <Socials />
     </div>
+    <Teleport to="body">
+      <div
+        class="overlay"
+        :class="{ 'shown-in-mobile': shownInMobile }"
+        @click="onToggle"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -137,6 +144,24 @@ function onToggle() {
 
     &.shown-in-mobile {
       transform: translateX(0);
+    }
+
+  }
+  .overlay {
+    width: 100%;
+    height: 100%;
+
+    display: none;
+    background-color: rgba(0, 0, 0, .5);
+    backdrop-filter: saturate(50%) blur(1px);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    &.shown-in-mobile {
+      display: block;
     }
   }
 }
