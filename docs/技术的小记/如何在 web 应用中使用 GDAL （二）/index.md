@@ -15,14 +15,8 @@ title: 如何在 web 应用中使用 GDAL （二）
 
 WebAssembly 名字带 assembly ，确实很像汇编语言，它位于中间表达和机器码之间。跟使用其他 JavaScript 库不同， WebAssembly 并不能像 esmodule 那样通过 `import` 指令将代码加载到线程中，也不能使用 `<script>` 加载，因为它并不是 JavaScript 。
 
-<figure>
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/u219u1w1fg7m4c9ypucf.png)
-<figcaption>
-<p>
-配图来自 <a href="https://hacks.mozilla.org/2017/02/creating-and-working-with-webassembly-modules/">Creating and working with WebAssembly modules</a>，非常好的文章，使我大脑旋转
-</p>
-</figcaption>
-</figure>
+配图来自 [Creating and working with WebAssembly modules](https://hacks.mozilla.org/2017/02/creating-and-working-with-webassembly-modules/)，非常好的文章，使我大脑旋转
 
 浏览器提供了一套完整的 WebAssembly 接口用于加载代码，也不复杂，假设我们有一个 some.wasm 的文件，加载只需要如下几行代码：
 
