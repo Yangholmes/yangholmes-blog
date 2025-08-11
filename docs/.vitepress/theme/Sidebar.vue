@@ -72,7 +72,7 @@ function onToggle() {
 <style lang="less" scoped>
   .sidebar {
     width: 100%;
-    min-width: 208px;
+    min-width: var(--side-bar-min-width);
     height: 100%;
     // padding-top: calc(var(--tool-bar-height) + 10rem);
 

@@ -44,6 +44,7 @@ const layoutName = useLayout();
 
   .left-side {
     flex: 1;
+    min-width: var(--side-bar-min-width);
     height: 100%;
     transition: flex .3s;
     position: relative;
