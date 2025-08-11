@@ -1,5 +1,5 @@
 diff --git a/dist/Search.vue b/dist/Search.vue
-index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5b4abf5a4 100644
+index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec6666a58e863 100644
 --- a/dist/Search.vue
 +++ b/dist/Search.vue
 @@ -4,6 +4,11 @@ import { useData, withBase, useRouter } from "vitepress";
@@ -14,7 +14,15 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5
  
  //TODO: delete deprecate code
  const VPData = useData();
-@@ -45,7 +50,7 @@ const result = computed(() => {
+@@ -11,7 +16,6 @@ const VPData = useData();
+ // @ts-ignore
+ const locale = VPData.localeIndex || VPData.localePath;
+ 
+-const metaKey = ref();
+ const open = ref<Boolean>(false);
+ const searchTerm = ref<string | null>();
+ const origin = ref<string>("");
+@@ -45,7 +49,7 @@ const result = computed(() => {
        var preview = item["p"];
        var link = item["l"];
        var anchor = item["a"];
@@ -23,7 +31,18 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5
        search.push({id: i, link, title, preview, anchor });
      }
      return search as any[];
-@@ -110,7 +115,7 @@ onMounted(async () => {
+@@ -94,10 +98,6 @@ onMounted(async () => {
+ 
+   searchIndex.value = document
+ 
+-  metaKey.value.innerHTML = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
+-    ? "⌘"
+-    : "Ctrl";
+-
+   const handleSearchHotKey = (e: KeyboardEvent) => {
+     if (e.key === "k" && (e.ctrlKey || e.metaKey)) {
+       e.preventDefault();
+@@ -110,7 +110,7 @@ onMounted(async () => {
    };
  
    window.addEventListener("keydown", handleSearchHotKey);
@@ -32,7 +51,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5
  
  });
  
-@@ -125,32 +130,32 @@ function cleanSearch() {
+@@ -125,32 +125,32 @@ function cleanSearch() {
    searchTerm.value = "";
  }
  
@@ -70,7 +89,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5
  }
  </script>
  
-@@ -204,19 +209,19 @@ const handleNavigation = (e: KeyboardEvent) => {
+@@ -204,19 +204,19 @@ const handleNavigation = (e: KeyboardEvent) => {
              <div class="VPPluginSearch-search-list">
                <div class="search-group"
                  v-for="(group, groupKey) of groupedResults"
@@ -93,7 +112,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5
                    @mouseenter="focused = item.id"
                    :class="{'link-focused':focused == item.id}"
                    :id="index.toString()"
-@@ -239,35 +244,11 @@ const handleNavigation = (e: KeyboardEvent) => {
+@@ -239,35 +239,11 @@ const handleNavigation = (e: KeyboardEvent) => {
          </div>
        </Teleport>
      </ClientOnly>
@@ -134,7 +153,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5
      </div>
    </div>
  </template>
-@@ -389,17 +370,6 @@ a.link-focused .VPPluginSearch-search-item,
+@@ -389,17 +365,6 @@ a.link-focused .VPPluginSearch-search-item,
    /* box-shadow: inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5), 0 3px 8px 0 #555a64; */
  }
  
@@ -152,7 +171,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5
  @media (max-width: 768px) {
    .VPPluginSearch-modal {
      max-width: 100%;
-@@ -432,49 +402,6 @@ a.link-focused .VPPluginSearch-search-item,
+@@ -432,49 +397,6 @@ a.link-focused .VPPluginSearch-search-item,
    box-sizing: border-box;
  }
  
@@ -202,7 +221,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..75b9916805cf15bdc49f8c13d80c4db5
  .DocSearch {
    --docsearch-primary-color: var(--vt-c-brand);
    --docsearch-highlight-color: var(--docsearch-primary-color);
-@@ -506,127 +433,10 @@ body.dark .DocSearch-Button:hover {
+@@ -506,127 +428,10 @@ body.dark .DocSearch-Button:hover {
    border: 1px solid var(--vt-c-brand);
  }
  
