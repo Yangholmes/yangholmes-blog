@@ -65,6 +65,7 @@ const layoutName = useLayout();
   @media (width <= 840px) {
     .left-side {
       flex: 0;
+      min-width: 0;
     }
   }
 }

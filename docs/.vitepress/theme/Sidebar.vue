@@ -157,7 +157,6 @@ function onToggle() {
 
 @media (width <= 840px) {
   .sidebar {
-
     transform: translateX(-100%);
 
     &.shown-in-mobile {
