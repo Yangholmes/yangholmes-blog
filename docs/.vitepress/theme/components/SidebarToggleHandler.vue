@@ -3,7 +3,6 @@ import MobileOnly from './MobileOnly.vue';
 
 const props = defineProps<{
   value: boolean;
-  click: () => void;
 }>();
 </script>
 
@@ -13,7 +12,6 @@ const props = defineProps<{
       <span
         class="icon"
         :class="`vpi-chevron-${props.value ? 'left' : 'right'}`"
-        @click="props.click"
       />
     </div>
   </MobileOnly>
