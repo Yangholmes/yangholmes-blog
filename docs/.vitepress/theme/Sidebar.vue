@@ -2,6 +2,7 @@
 import {useData, useRoute} from 'vitepress';
 import {computed, ref, Teleport} from 'vue';
 import Search from './components/Search.vue';
+import Avatar from './components/avatar/Avatar.vue';
 import Socials from './components/Socials.vue';
 import ThemeSwitch from './components/ThemeSwitch.vue';
 import SidebarToggleHandler from './components/SidebarToggleHandler.vue';
@@ -40,19 +41,23 @@ function onToggle() {
       <ThemeSwitch />
       <Search class="search" />
     </div>
-    <ul class="nav">
-      <li
-        v-for="cat in allCategories"
-        :key="cat"
-        :class="{ active: cat === catInRoute }"
-      >
-        <a :href="`/${cat}/`">
-          {{ cat }}
-        </a>
-      </li>
-    </ul>
-    <div class="bottom-bar">
+    <nav>
+      <Avatar />
+      <ul class="category-list">
+        <li
+          v-for="cat in allCategories"
+          :key="cat"
+          :class="{ active: cat === catInRoute }"
+        >
+          <a :href="`/${cat}/`">
+            {{ cat }}
+          </a>
+        </li>
+      </ul>
       <Socials />
+    </nav>
+    <div class="bottom-bar">
+      <!-- <Socials /> -->
     </div>
     <Teleport to="body">
       <div
@@ -69,9 +74,12 @@ function onToggle() {
     width: 100%;
     min-width: 208px;
     height: 100%;
+    // padding-top: calc(var(--tool-bar-height) + 10rem);
+
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    // justify-content: flex-start;
     justify-content: center;
 
     background-color: var(--color--level-3);
@@ -121,18 +129,27 @@ function onToggle() {
       bottom: 0;
     }
 
-    ul.nav {
+    nav {
       padding-right: 3rem;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      gap: 1.25rem;
+      align-items: center;
+      gap: 2.5rem;
 
-      li {
-        text-align: right;
+      ul.category-list {
+        display: flex;
+        flex-direction: column;
+        align-items: column;
+        gap: 1.25rem;
 
-        &.active {
-          color: var(--color--level-1);
+        li {
+          text-align: center;
+          transition: color .3s;
+
+          &:hover,
+          &.active {
+            color: var(--color--level-1);
+          }
         }
       }
     }
@@ -140,6 +157,7 @@ function onToggle() {
 
 @media (width <= 840px) {
   .sidebar {
+
     transform: translateX(-100%);
 
     &.shown-in-mobile {
