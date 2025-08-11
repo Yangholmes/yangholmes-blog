@@ -142,6 +142,8 @@ function onToggle() {
         align-items: column;
         gap: 1.25rem;
 
+        user-select: none;
+
         li {
           text-align: center;
           transition: color .3s;
