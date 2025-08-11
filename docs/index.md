@@ -23,6 +23,6 @@ pagefind-indexed: false
 
 - <input type="checkbox" disabled /> 完成文章目录插件
 
-- <input type="checkbox" disabled /> 新增评论区，使用自托管评论组件，支持匿名
+- <input type="checkbox" disabled checked /> 新增评论区，使用基于 github discussions 的评论区插件。~~使用自托管评论组件，支持匿名(服务器配置太低了，需要先升级服务器配置)~~
 
 - <input type="checkbox" disabled /> 设计首页
