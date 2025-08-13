@@ -1,4 +1,4 @@
-import { defineConfigWithTheme } from 'vitepress'
+import { defineConfigWithTheme } from 'vitepress';
 import { SearchPlugin } from "vitepress-plugin-search";
 import flexSearchIndexOptions from "flexsearch";
 import autoprefixer from 'autoprefixer';
@@ -31,12 +31,16 @@ export default defineConfigWithTheme({
           autoprefixer(),
         ]
       }
-    }
+    },
   },
 
   head: [
     ['link', { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }]
   ],
+
+  markdown: {
+    lineNumbers: true,
+  },
 
   transformHtml(code) {
     if (MS_CLARITY_ID) {

@@ -1,5 +1,5 @@
 diff --git a/dist/Search.vue b/dist/Search.vue
-index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec6666a58e863 100644
+index f8062c1320781e38d33d9f760539ac941e8854d1..ace97319f737c2bf1da2aa59cacf573c62e7ce6a 100644
 --- a/dist/Search.vue
 +++ b/dist/Search.vue
 @@ -4,6 +4,11 @@ import { useData, withBase, useRouter } from "vitepress";
@@ -22,6 +22,15 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
  const open = ref<Boolean>(false);
  const searchTerm = ref<string | null>();
  const origin = ref<string>("");
+@@ -24,7 +28,7 @@ const buttonLabel = ref("Search");
+ const placeholder = ref("Search docs");
+ const focused = ref(0)
+ const modal = ref<HTMLElement>()
+-  const router = useRouter()
++const router = useRouter()
+ interface Options {
+   previewLength: number;
+   buttonLabel: string;
 @@ -45,7 +49,7 @@ const result = computed(() => {
        var preview = item["p"];
        var link = item["l"];
@@ -31,7 +40,15 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
        search.push({id: i, link, title, preview, anchor });
      }
      return search as any[];
-@@ -94,10 +98,6 @@ onMounted(async () => {
+@@ -77,6 +81,7 @@ const openSearch = () => {
+ };
+ 
+ onMounted(async () => {
++  // @ts-ignore
+   const data = await import("virtual:search-data");
+   INDEX_DATA.value = data.default.INDEX_DATA;
+   PREVIEW_LOOKUP.value = data.default.PREVIEW_LOOKUP;
+@@ -94,10 +99,6 @@ onMounted(async () => {
  
    searchIndex.value = document
  
@@ -42,7 +59,7 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
    const handleSearchHotKey = (e: KeyboardEvent) => {
      if (e.key === "k" && (e.ctrlKey || e.metaKey)) {
        e.preventDefault();
-@@ -110,7 +110,7 @@ onMounted(async () => {
+@@ -110,7 +111,7 @@ onMounted(async () => {
    };
  
    window.addEventListener("keydown", handleSearchHotKey);
@@ -51,7 +68,15 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
  
  });
  
-@@ -125,32 +125,32 @@ function cleanSearch() {
+@@ -118,39 +119,39 @@ const groupedResults = computed(() => GroupBy(result.value, (x:any) =>
+                   x.link.split('/').slice(0, -1).join('-')
+                 ))
+ 
+-const linksOrder = computed(() => Object.values(groupedResults.value).flat().map(i => i.id))
++const linksOrder = computed(() => Object.values(groupedResults.value).flat().map((i: any) => i.id))
+ 
+ function cleanSearch() {
+   open.value = false;
    searchTerm.value = "";
  }
  
@@ -89,7 +114,19 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
  }
  </script>
  
-@@ -204,19 +204,19 @@ const handleNavigation = (e: KeyboardEvent) => {
+@@ -161,9 +162,9 @@ const handleNavigation = (e: KeyboardEvent) => {
+       <Teleport to="body">
+         <div v-show="open" class="VPPluginSearch-modal-back" @click="open = false" @keydown="handleNavigation">
+           <div class="VPPluginSearch-modal" @click.stop ref="modal" >
+-            <form class="DocSearch-Form">
++            <form class="DocSearch-Form-new">
+               <label
+-                class="DocSearch-MagnifierLabel"
++                class="DocSearch-MagnifierLabel-new"
+                 for="docsearch-input"
+                 id="docsearch-label"
+                 ><svg
+@@ -204,30 +205,30 @@ const handleNavigation = (e: KeyboardEvent) => {
              <div class="VPPluginSearch-search-list">
                <div class="search-group"
                  v-for="(group, groupKey) of groupedResults"
@@ -112,7 +149,20 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
                    @mouseenter="focused = item.id"
                    :class="{'link-focused':focused == item.id}"
                    :id="index.toString()"
-@@ -239,35 +239,11 @@ const handleNavigation = (e: KeyboardEvent) => {
+                 >
+                   <div class="VPPluginSearch-search-item">
+                     <span class="VPPluginSearch-search-item-icon">{{
+-                      item.link.includes("#") ? "#" : "▤"
++                      item.link.includes("#") ? "#" : "§"
+                     }}</span>
+                     <div style="width: 100%">
+                       <h3>{{ item.title }}</h3>
+-                      <p> <div v-html="item.preview"></div> </p>
++                      <div> <div v-html="item.preview"></div> </div>
+                     </div>
+                     <span class="VPPluginSearch-search-item-icon">↪</span>
+                   </div>
+@@ -239,57 +240,33 @@ const handleNavigation = (e: KeyboardEvent) => {
          </div>
        </Teleport>
      </ClientOnly>
@@ -153,7 +203,88 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
      </div>
    </div>
  </template>
-@@ -389,17 +365,6 @@ a.link-focused .VPPluginSearch-search-item,
+ 
+ <style>
+-.VPPluginSearch-flex-logo{
+-  width: 80px;
+-  margin-left: calc(100% - 90px);
+-  padding-bottom: 10px;
++.VPPluginSearch-flex-logo {
++  width: 60px;
++  margin: .5rem 0 0 calc(100% - 60px - 1rem);
++  padding-bottom: .5rem;
+ }
+ 
+ .VPPluginSearch-search-list {
+-  padding: 1rem;
++  padding: 0 1rem;
+   max-height: calc(100vh - 230px);
+   overflow-x: auto;
+ }
+ 
+ .VPPluginSearch-search-item-icon {
+-  font-family: none;
++  width: 2rem;
++  display: flex;
+   align-self: center;
+-  padding: 0 1rem 0 0;
+-  font-size: x-large;
++  font-size: 1.5rem;
+ }
+ 
+ .VPPluginSearch-search-list > div {
+@@ -298,15 +275,16 @@ const handleNavigation = (e: KeyboardEvent) => {
+ }
+ 
+ .VPPluginSearch-search-item {
+-  padding: 0.25rem 1rem;
+-  margin: 8px 0 0 0;
++  padding: .5rem 1rem;
++  margin: 1rem 0 0 0;
+   border: solid 1px;
+   border-radius: 6px;
+   display: flex;
++  gap: .5rem;
+ 
+-  border-color: var(--vp-custom-block-details-border);
+-  color: var(--vp-custom-block-details-text);
+-  background-color: var(--vp-custom-block-details-bg);
++  border-color: var(--color--level-3);
++  color: var(--color--level-5);
++  /* background-color: var(--color--level-1); */
+ }
+ 
+ .VPPluginSearch-search-item p {
+@@ -318,12 +296,12 @@ const handleNavigation = (e: KeyboardEvent) => {
+ a.link-focused .VPPluginSearch-search-item,
+ .VPPluginSearch-search-item:hover {
+   color: #fff;
+-  background: var(--vp-local-search-highlight-bg);
++  background: var(--color--level-5);
+ }
+ 
+ a.link-focused .VPPluginSearch-search-item,
+ .VPPluginSearch-search-item:hover > p {
+-  color: #fff;
++  color: var(--color--level-1);
+ }
+ 
+ /* .dark .search-item > p {
+@@ -336,10 +314,9 @@ a.link-focused .VPPluginSearch-search-item,
+   padding-left: 16px;
+ }
+ 
+-.DocSearch-MagnifierLabel {
+-  margin: 16px;
+-  color: var(--c-brand-light);
+-  stroke-width: 2px;
++.DocSearch-MagnifierLabel-new {
++  color: var(--color--level-5);
++  stroke-width: 5px;
+ }
+ 
+ .DocSearch-Input {
+@@ -389,17 +366,6 @@ a.link-focused .VPPluginSearch-search-item,
    /* box-shadow: inset 1px 1px 0 0 hsla(0, 0%, 100%, 0.5), 0 3px 8px 0 #555a64; */
  }
  
@@ -171,7 +302,42 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
  @media (max-width: 768px) {
    .VPPluginSearch-modal {
      max-width: 100%;
-@@ -432,49 +397,6 @@ a.link-focused .VPPluginSearch-search-item,
+@@ -407,74 +373,28 @@ a.link-focused .VPPluginSearch-search-item,
+   }
+ }
+ 
+-.dark .DocSearch-Form {
++.dark .DocSearch-Form-new {
+   background-color: var(--vt-c-bg-mute);
+ }
+-.DocSearch-Form {
+-  background-color: #fff;
+-  border: 1px solid var(--vt-c-brand);
+-  padding: 6px;
+-}
+-.DocSearch-Form {
+-  align-items: center;
++.DocSearch-Form-new {
++  border-bottom: 1px solid var(--color--level-5);
+   background: var(--docsearch-searchbox-focus-background);
+-  border-radius: 4px;
+-  box-shadow: var(--docsearch-searchbox-shadow);
+-  display: flex;
++
++  width: 100%;
+   height: var(--docsearch-searchbox-height);
+   margin: 0;
+-  padding: 0 var(--docsearch-spacing);
++  padding: 1rem;
++
++  display: flex;
++  align-items: center;
++
+   position: relative;
+-  width: 100%;
+ }
+ .DocSearch-Container,
+ .DocSearch-Container * {
    box-sizing: border-box;
  }
  
@@ -221,10 +387,15 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
  .DocSearch {
    --docsearch-primary-color: var(--vt-c-brand);
    --docsearch-highlight-color: var(--docsearch-primary-color);
-@@ -506,127 +428,10 @@ body.dark .DocSearch-Button:hover {
-   border: 1px solid var(--vt-c-brand);
+@@ -501,134 +421,11 @@ body.dark .DocSearch-Button:hover {
+   border-top: 1px solid var(--vt-c-divider);
  }
  
+-.DocSearch-Form {
+-  background-color: white;
+-  border: 1px solid var(--vt-c-brand);
+-}
+-
 -.DocSearch-Button-Container {
 -  align-items: center;
 -  display: flex;
@@ -259,10 +430,10 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
 -  }
 -}
 -
- .DocSearch-MagnifierLabel {
-   color: var(--vp-c-brand-dark);
- }
- 
+-.DocSearch-MagnifierLabel {
+-  color: var(--vp-c-brand-dark);
+-}
+-
 -.DocSearch-Button .DocSearch-Search-Icon {
 -  transition: color 0.5s;
 -  fill: currentColor;
@@ -345,7 +516,12 @@ index f8062c1320781e38d33d9f760539ac941e8854d1..5ac9ab8a933d3faa419b31716caec666
 -  transition: color 0.5s;
 -  display: inline-block;
 -  padding: 0 1px;
--}
++.search-group {
++  margin-top: 1rem;
+ }
  
  .VPPluginSearch-search-group{
-   color: var(--vp-c-brand-1)
+-  color: var(--vp-c-brand-1)
++  color: var(--color--level-5)
+ }
+ </style>
