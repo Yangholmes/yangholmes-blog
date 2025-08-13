@@ -58,31 +58,33 @@ title: PhotoShop 基础--如何抠图
 工具清单
 
 <table>
-  <tr>
-    <td>拆分</td>
-    <td>简单的选择工具<img src="./套索.png" /><img src="./选择.png" /><img src="./魔法棒.png" /></td>
-  </tr>
-  <tr>
-    <td>提高对比度</td>
-    <td>通道+色阶/曲线<img src="./色阶&通道.png" /></td>
-  </tr>
-  <tr>
-    <td rowspan="3">画出选区</td>
-    <td>1.简单的选择工具<img src="./套索.png" /><img src="./选择.png" /><img src="./魔法棒.png" /></td>
-  </tr>
-  <tr>
-    <td>2.蒙版/快速蒙版<img src="./快速蒙版.png" /></td>
-  </tr>
-  <tr>
-    <td>3.钢笔工具<img src="./钢笔.png" /><img src="./图形.png" /></td>
-  </tr>
-  <tr>
-    <td rowspan="2">组合</td>
-    <td>1.组合所有可见图层：Ctrl+Alt+E</td>
-  </tr>
-  <tr>
-    <td>2.另存为体积较小的图片格式：Ctrl+Alt+Shift+S</td>
-  </tr>
+  <tbody>
+    <tr>
+      <td>拆分</td>
+      <td>简单的选择工具<img src="./套索.png" /><img src="./选择.png" /><img src="./魔法棒.png" /></td>
+    </tr>
+    <tr>
+      <td>提高对比度</td>
+      <td>通道+色阶/曲线<img src="./色阶&通道.png" /></td>
+    </tr>
+    <tr>
+      <td rowspan="3">画出选区</td>
+      <td>1.简单的选择工具<img src="./套索.png" /><img src="./选择.png" /><img src="./魔法棒.png" /></td>
+    </tr>
+    <tr>
+      <td>2.蒙版/快速蒙版<img src="./快速蒙版.png" /></td>
+    </tr>
+    <tr>
+      <td>3.钢笔工具<img src="./钢笔.png" /><img src="./图形.png" /></td>
+    </tr>
+    <tr>
+      <td rowspan="2">组合</td>
+      <td>1.组合所有可见图层：Ctrl+Alt+E</td>
+    </tr>
+    <tr>
+      <td>2.另存为体积较小的图片格式：Ctrl+Alt+Shift+S</td>
+    </tr>
+  </tbody>
 </table>
 
 ## 各式工具位置

@@ -114,7 +114,7 @@ Atom 配置入口在这里
 
    我们已经在`init.coffee`中注册好了一个`markdown:paste-as-link`指令，现在试着将这个指令映射到一组快捷键`ctrl-alt-shift-m`上。
 
-   ```cson
+   ```
    'atom-workspace':
    'ctrl-alt-shift-m': 'markdown:paste-as-link'
    ```
@@ -127,7 +127,7 @@ Atom 配置入口在这里
 
    `snippets.cson`可以用来定义一些常用的代码片段，例如我们常在`JavaScript`中使用`console.debug`调试 log，但觉得`console`语句太长了，希望可以输入关键字自动补全。
 
-   ```cson
+   ```
    '.source.js':
        'console debug':
            'prefix': 'debug'
