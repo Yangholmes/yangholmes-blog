@@ -7,6 +7,8 @@ title: JavaScript 变量类型判断
 
 **2025/07/12**
 
+[[toc]]
+
 ## JavaScript 数据类型
 
 JavaScript 是一种变量类型不敏感的语言，在使用变量的过程中，难免需要对其类型进行判断。但是 JavaScript 没有严格定义基本类型，自顶向下看，只有 **`Primitive`**（原始值，或者叫原始数据类型） 和 **`object`** 两种类型。区分 原始值 和 object 的方法很简单，原始值不具有属性和方法，但 object 有。原始值**不可修改**，是 JavaScript 最底层的数据类型表示，开发者在日常开发中，很难直接接触到原始值，每次需要访问原始值时， JavaScript 会自动地构造一个对象将原始值封装起来。举个例子，字符串 `'foo'` 是原始值，当运行代码 `'foo'.includes('f')` 时，创建 `String` 自动地将 `'foo'` “包裹”起来，`'foo'` 本身不具有任何方法和属性，实际上是在访问 `String.prototype.includes()` 。

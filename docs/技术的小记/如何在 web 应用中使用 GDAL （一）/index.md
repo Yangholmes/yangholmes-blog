@@ -7,9 +7,11 @@ title: 如何在 web 应用中使用 GDAL （一）
 
 **2025/08/04**
 
+[[toc]]
+
 > 开胃菜
 
-# 前言
+## 前言
 
 有过 GIS 相关开发工作的朋友都知道，GDAL 是 GIS 图形处理最强大的工具，对于 native 客户端和服务端的开发者来说非常友好，提供了适用于多种 CPU 和操作系统的可执行文件和 lib 文件，只要开发者使用的不是小众平台，都能轻松方便地获取。但对于 GDAL 来讲， Web 就是一个小众平台，并没有提供这个平台的任何支持。所以一般地， WebGIS 软件都会将 GDAL 相关服务部署到服务端，客户端通过 HTTP 请求的方式调用。这个方案有一些不足：
 
@@ -23,7 +25,7 @@ title: 如何在 web 应用中使用 GDAL （一）
 
 ![移植路径](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pigs5v4hldjieax8dlbo.png)
 
-# 使用 emscripten
+## 使用 emscripten
 
 对于习惯于编写 JavaScript 的前端开发者来说，如何开始使用 emscripten 就是一个不小的问题。和大多数开源项目一样，emscripten 也是从源码编译开始。这里不大篇幅赘述安装过程，详细请查看 [emsdk 文档](https://emscripten.org/docs/getting_started/downloads.html#installation-instructions-using-the-emsdk-recommended)。如果安装总是不成功，或者懒得安装，也可以使用 emsdk 的 [Docker 镜像](https://hub.docker.com/r/emscripten/emsdk)。
 
@@ -59,7 +61,7 @@ node a.out.js
 
 仔细观察就会发现，其实 emsdk 的使用和 gcc 差不多，编译 C 文件时，**使用 `emcc` 代替 `gcc` 便可**，编译 C++ 时，使用 `em++` 命令。同时，和 cmake 类似，emsdk 也提供了 `emmake`、 `emconfigure` 等编译指令。除了专门的配置参数以外，其余参数都是通用的。这种设计大大降低了使用难度。
 
-# 编译 GDAL
+## 编译 GDAL
 
 GDAL 当前版本（3.9）使用 CMake 编译，最小依赖如下：
 
@@ -92,7 +94,7 @@ github 上有一个 gdal3.js 的项目提供了完整的[编译脚本](https://g
 
 ![gdal 编译结果](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/51e1q6wwgnou6gxhaqrm.png)
 
-# 结语
+## 结语
 
 本篇介绍了 emscripten 的基本使用和 GDAL 的编译，初步获得了 WebAssembly 文件和胶水代码。**但这只是一个起点**，真正的问题没有解决：
 

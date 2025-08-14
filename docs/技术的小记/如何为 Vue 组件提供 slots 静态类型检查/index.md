@@ -8,6 +8,8 @@ createDate: 2025/05/28
 
 使用 TypeScript + jsx 编写 vue 组件的前提下
 
+[[toc]]
+
 ## 1. 使用 jsx 语法编写 vue 组件
 
 除了 template 语法，vue 组件也是可以用 [jsx](https://vuejs.org/guide/extras/render-function#jsx-tsx) 来编写的。 jsx 最初是 Facebook 为 React 开发的一种 JavaScript 扩展，因为上手容易，越来越多人使用，以至于其他 web 框架也开始支持这种 JavaScript 方言。其实 jsx 还有一个优势，容易添加类型，也就是所谓的 tsx 。 所有将模板编译成类似 `createElement()` 函数的前端框架都理应支持 jsx 语法，vue 也不例外，早在 2.x 的版本就已经支持 jsx 了，vue2 template options 的写法对一些灵活场景非常不友好，有时候还是会使用 jsx 或者叫 `render function` 的函数来实现（例如 ant-design-vue Modal.method()）。

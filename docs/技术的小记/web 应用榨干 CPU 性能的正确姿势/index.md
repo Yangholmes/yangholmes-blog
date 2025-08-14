@@ -7,7 +7,9 @@ title: web 应用榨干 CPU 性能的正确姿势
 
 **2021/09/03**
 
-# 浏览器的线程分配
+[[toc]]
+
+## 浏览器的线程分配
 
 现代浏览器普遍采用多进程架构，将网络 I/O、存储、插件等功能分开不同的进程进行处理，其中最重要的，为每一个新开的 tab 都创建了独立的进程。这样做的好处显而易见：某个页面卡死不会导致整个浏览器卡死，也不会影响其他页面（也有例外，当计算机资源不足以新开进程时，浏览器会合并一些 tab 到同一个进程中）。一个 web 应用运行在一个 tab 进程中，即 渲染进程（Renderer Process）。这个进程负责整个网页运行的多种事务。一般地，会维护以下几个线程：
 
@@ -22,7 +24,7 @@ title: web 应用榨干 CPU 性能的正确姿势
 ![浏览器线程](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3psq8x3j384qxosrchx9.png)
 图片来自 [Inside look at modern web browser (part 1)](https://developer.chrome.com/blog/inside-browser-part1)
 
-# JavaScript 单线程的优劣
+## JavaScript 单线程的优劣
 
 JavaScript 被设计成单线程执行，那么浏览器便不需要考虑 DOM 等资源同时被多个线程操作带来的竞争问题，降低了设计的复杂度。
 
@@ -30,7 +32,7 @@ JavaScript 被设计成单线程执行，那么浏览器便不需要考虑 DOM �
 
 > 蝇量级和草量级是职业拳击比赛中最轻的级别。
 
-# Worker 和 多线程
+## Worker 和 多线程
 
 为了解决这个问题， WebWorker 应运而生，作为 HTML5 标准的一部分加入到浏览器内核中。
 
@@ -42,7 +44,7 @@ JavaScript 被设计成单线程执行，那么浏览器便不需要考虑 DOM �
 
 尽管浏览器具有多线程特性，但数据隔离、 Worker 不可操作 DOM 等特性，依然保证了 JavaScript 单线程的本质。这样一来，主线程就可以专心地处理用户交互，计算密集型和高延迟的任务就交给 Worker 线程，保持 UI 流畅，用户体验满分。
 
-# Web Workers API
+## Web Workers API
 
 Web Worker 通过宿主提供的 Web Workers API 来实现，非常灵活的是，Web Worker 也支持 Web Workers API ，意味着我们可以嵌套创建 Worker 。
 
@@ -93,15 +95,15 @@ self.onmessage = (evt) => {
 worker.terminate();
 ```
 
-# 多线程编程实践
+## 多线程编程实践
 
-## 最佳线程数
+### 最佳线程数
 
 一般地，在操作系统空闲的时候，我们利用 CPU 所有线程参与运算是最快的。BOM 上有一个只读参数 [`window.navigator.hardwareConcurrency`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/hardwareConcurrency) 专门用于查询当前计算机可用的逻辑处理器数量，在开启多线程之前，查询这个参数确定最大的线程数。
 
 程序的运行过程中，我们无法实时监控 CPU 的空闲线程数量，也就很难做到线程数动态分配。作者的经验是，无论什么时候，都开启最大线程数，至于 CPU 实际能用几个线程，如何分配线程，我们把这个任务交给浏览器来处理。
 
-## 线程池
+### 线程池
 
 当某个耗时很长的模块需要反复调用时，可以对这个模块创建一个 Worker 线程池，线程池中的每一个元素对应一个 Worker 线程和线程当前使用状态:
 
@@ -120,7 +122,7 @@ for (let i = 0; i < window.navigator.hardwareConcurrency; i++) {
 
 `inUse` 为 `false` 时，表示线程闲；找到某个闲 Worker ，执行 `postMessage()` 函数，同时将 `inUse` 赋值为 `true` ，标记为线程忙，其他任务就不能再执行这个 Worker 了；Worker 执行完毕，返回数据到主线程，主线程释放线程池中对应的 Worker ，将 `inUse` 重新置为 `false` 。如果线程池里面的线程全部都为忙状态，那么就需要进入等待，直到有空闲的线程出现为止。
 
-## Worker 嵌套
+### Worker 嵌套
 
 当出现庞大的数量处理场景时，我们可以把大量的数据拆分成规模较小的若干分，分别送入 Worker 中执行计算，最后再将数据拼接起来获得结果。如果在主线程中拆分和拼接超长数组，也可能会造成 UI 阻塞；如果只是将计算放入一个线程，把耗时操作从一个线程转移到另一个线程，性能并不能提高。所以这里应该采取多线程嵌套策略：主线程开启一个主 Worker 专门用于数据拆分和拼接，在拆分过程中，动态创建子 Worker 执行运算，最后在主 Worker 中汇总拼接数据，返回最终结果到主线程。
 
@@ -178,7 +180,7 @@ self.onmessage = (e) => {
 
 > Worker 数量可以超过 CPU 可用线程数量吗？实操上是可以的，浏览器会协调实际线程的调用，但子线程数量超过硬件可以负担的最大数量时，性能并不能提升，而且反倒可能降低。
 
-# 多线程性能对比
+## 多线程性能对比
 
 这里提供一个 Worker 嵌套方案的例子作为 benchmark ，线程调度方案如下：
 
@@ -196,11 +198,11 @@ self.onmessage = (e) => {
 
 3. 多开 Worker 线程解析，仅需 240 毫秒，性能提升非常明显（测试设备逻辑核心数为 16）, 性能提升了近 82%
 
-# 限制
+## 限制
 
 Worker 的使用很简单，但是有时候会有一些限制
 
-## 脚本同源限制
+### 脚本同源限制
 
 Worker 脚本必须同源，且不支持 `file://` 协议，所以必须启动一个服务器容器来调试 Worker 程序。我们经常会将脚本当做资源部署到 CDN 中，应用入口和 CDN 不在同一个域中时，跨域会导致 Worker 代码加载失败。
 
@@ -219,10 +221,10 @@ let worker = new Worker(url);
 
 > 相比起来，将脚本代码转换成 Blob 的方法比 base64 高效，推荐使用 Blob。
 
-## 工程化问题
+### 工程化问题
 
 现代前端项目普遍采用如 webpack 、 vite 等高级工程化工具管理，可以参考 [webpack worker-loader](https://webpack.js.org/guides/web-workers) 和 [vite web-workers](https://vite.dev/guide/features.html#web-workers) 相关章节了解工程化的做法。
 
-## api 访问限制
+### api 访问限制
 
 Worker 具有一套和宿主相似的全局变量，可以通过访问 self 对象获取全局资源。但是 Worker 无法访问 DOM ，无法使用 `alert()` `confirm()` 等函数，可以使用 `console` `debugger` 等函数进行代码调试。详细的全局变量说明可以参考[这里](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API#worker_global_contexts_and_functions)。
