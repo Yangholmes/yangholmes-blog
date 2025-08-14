@@ -21,8 +21,10 @@
     "gray-matter": "^4.0.3",
     "less": "^4.4.0",
     "markdown-it-mathjax3": "^4.3.2",
+    "mermaid": "^11.9.0",
     "simple-git": "^3.28.0",
     "vitepress": "^1.6.3",
+    "vitepress-plugin-mermaid": "^2.0.17",
     "vitepress-plugin-search": "1.0.4-alpha.22"
   },
   "dependencies": {

@@ -1,5 +1,6 @@
 import { defineConfigWithTheme } from 'vitepress';
 import { SearchPlugin } from "vitepress-plugin-search";
+import { withMermaid } from "vitepress-plugin-mermaid";
 import flexSearchIndexOptions from "flexsearch";
 import autoprefixer from 'autoprefixer';
 
@@ -8,7 +9,7 @@ import { getAllCategories, getAllPosts } from './utils';
 const MS_CLARITY_ID = process.env.MS_CLARITY_ID || '';
 
 // https://vitepress.dev/reference/site-config
-export default defineConfigWithTheme({
+export default withMermaid(defineConfigWithTheme({
   lang: 'zh-cn',
   title: 'Yangholmes\' blog',
   description: 'blog',
@@ -32,6 +33,9 @@ export default defineConfigWithTheme({
         ]
       }
     },
+    optimizeDeps: {
+      include: ['mermaid']
+    }
   },
 
   head: [
@@ -86,4 +90,4 @@ export default defineConfigWithTheme({
       }
     ]
   }
-})
+}));
