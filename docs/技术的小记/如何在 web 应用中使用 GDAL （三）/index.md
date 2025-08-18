@@ -45,7 +45,7 @@ createDate: 2025/08/18
 
 ### 代码分离
 
-```bash
+```makefile
 WASM
 ```
 
@@ -61,25 +61,33 @@ WASM
 
 #### 1. 库函数
 
-通常在项目中，我们只会用到算法库中占整个库很小比例的若干几个功能，没有必要编译无用的功能；编译 C/C++ 项目时，编译器通常会自动消除死代码，可以通过以下几个参数控制：
+通常在项目中，我们只会用到算法库中占整个库很小比例的若干几个功能，没有必要编译无用的功能；编译 C/C++ 项目时，编译器通常会自动消除死代码，可以通过以下两个参数控制：
 
-```bash
+```makefile
 EXPORTED_FUNCTIONS  # 导出函数列表
 ```
 
-```bash
+```makefile
 EXPORT_ALL  # 导出所有函数
 ```
 
-注意，导出函数前面需要添加一个下划线 `_` 。
+注意，导出函数前面需要添加一个下划线 `_` ，例如需要导出 `add` 函数，可以这样编写
+
+```makefile
+-sEXPORTED_FUNCTIONS="['_add']""
+```
 
 #### 2. emscripten 运行时函数
 
-```bash
+```makefile
 EXPORTED_RUNTIME_METHODS
 ```
 
-emscripten 运行时函数，默认值是空数组。我们应该按照实际需要添加导出函数，比如需要使用虚拟文件系统时，添加 `FS` 到数组中。
+emscripten 运行时函数，默认值是空数组。我们应该按照实际需要添加导出函数，比如需要使用虚拟文件系统时，添加 `FS` 到数组中
+
+```makefile
+-sEXPORTED_RUNTIME_METHODS="['FS']"
+```
 
 在 [gdal3.js](https://github.com/bugra9/gdal3.js/blob/master/Makefile) 项目中，导出函数列表将几乎所有支持的 GDAL 功能都列进去了，这是编译产物巨大化的关键原因。
 
@@ -87,7 +95,7 @@ emscripten 运行时函数，默认值是空数组。我们应该按照实际需
 
 emcc 编译参数和 gcc 的大致相同，可以选择关闭生产环境中的调试信息来优化产物。和调试信息相关的配置有
 
-```bash
+```makefile
 -gsource-map
 -source-map-base
 -O<level>
@@ -105,7 +113,7 @@ emcc 编译参数和 gcc 的大致相同，可以选择关闭生产环境中的�
 - `-O0` - 完全不优化，保留所有调试信息
 - `-O1` - 基础优化，消除运行时断言
 - `-O2` - `-O1` 基础上进一步优化，消除死代码
-- `-O3` - `-O2` 基础上再优化，
+- `-O3` - `-O2` 基础上再优化
 - `-Og` - 和 `-O1` 差不多，比 `-O1` 保留更多调试信息
 - `-Os` - 和 `-O3` 差不多，比 `-O3` 输出文件更小
 - `-Oz` - 和 `-Os` 差不多，比 `-Os` 输出文件更小
@@ -127,7 +135,7 @@ emcc 编译参数和 gcc 的大致相同，可以选择关闭生产环境中的�
 
 默认情况下，emscripten 认为胶水代码会在不同的环境中执行，自动生成各种环境的嗅探代码和初始化代码。实际上，对于一个确定的应用而言，运行环境是固定的，没有必要产出环境嗅探。运行环境的参数是
 
-```bash
+```makefile
 ENVIRONMENT
 ```
 
@@ -139,21 +147,21 @@ emscripten 支持的值有：
 - worker - worker 环境
 - shell - 命令行中
 
-如果是 web 应用，只需要编译 worker 环境即可；同理，在 Node.js 环境中只需要编译 node 。
+如果是 web 应用，只需要编译 `-sENVIRONMENT=worker` 环境即可；同理，在 Node.js 环境中只需要编译 `-sENVIRONMENT=node` 。
 
 还有一个与运行环境相关的配置项是
 
-```bash
+```makefile
 EXPORT_ES6
 ```
 
-将这个配置设置为 `1` ，便可以把胶水代码输出为符合 esmodule 规范的模块。默认情况下，胶水代码输出包含环境嗅探的 CommonJs 模块和 IIFE ，在现代前端项目中无法使用 `import` 导入。
+将这个配置设置为 `1` ，便可以把胶水代码输出为符合 esmodule 规范的模块。默认情况下，胶水代码输出包含环境嗅探的 CommonJS 模块和 IIFE ，在现代前端项目中无法使用 `import` 导入。
 
 ### 文件系统
 
 某些算法库，如 GDAL ，需要依赖操作系统的文件系统读写文件和输出输出，emscripten 实现了一套基于 JavaScript 的内存文件系统。如果项目中没有使用文件系统，可以不使用，配置文件系统的参数是
 
-```bash
+```makefile
 FILESYSTEM
 ```
 
@@ -165,7 +173,7 @@ FILESYSTEM
 
 #### 1. polyfill
 
-```bash
+```makefile
 POLYFILL
 ```
 
@@ -173,7 +181,7 @@ POLYFILL
 
 #### 2. 使用 BOM 的 Math 库
 
-```bash
+```makefile
 JS_MATH
 ```
 
@@ -181,7 +189,7 @@ JS_MATH
 
 #### 3. 最小化输出
 
-```bash
+```makefile
 MINIMAL_RUNTIME
 ```
 
@@ -195,9 +203,19 @@ MINIMAL_RUNTIME
 
 FLAGS 文件[第 4 行](https://github.com/bugra9/gdal3.js/blob/v2.8.1/GDAL_EMCC_FLAGS.mk#L4) 定义调试等级，emcc 支持参数 0~3 ，并不支持 `-g4`。
 
+这里明显可以看出来，当 `type` 参数为 `debug` 时，编译输出完整的调试信息。所以这里应该使用
+
+```makefile
+GDAL_EMCC_FLAGS += -O0 -g3`
+```
+
 #### 2. sourcemap 设置错误
 
-还是在同一行，配置了 `--source-map-base` ，但并未开启 `-gsource-map` 。
+还是在同一行，配置了 `--source-map-base` ，但并未开启 `-gsource-map` 。这里同样是当 `type` 参数为 `debug` 时，需要编译完整的 sourcemap 方便跟踪调试， `--source-map-base` 建议从参数中读取，所以这里应该使用
+
+```makefile
+GDAL_EMCC_FLAGS += -gsource-map=1 --source-map-base $(BASE_URL)
+```
 
 ### gdal3.js 编译脚本优化
 
