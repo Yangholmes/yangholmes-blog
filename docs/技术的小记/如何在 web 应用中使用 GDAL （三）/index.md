@@ -51,9 +51,11 @@ WASM
 
 有三个选项
 
-- 0 - 生成 asm.js ，wasm 代码和 js 代码合二为一
+- 0 - 生成 wasm.js ，wasm 代码和 js 代码合二为一
 - 1 - wasm 代码和 js 代码分开输出
-- 2 - 同时生成 asm.js 和 wasm + js
+- 2 - 同时生成 wasm.js 和 wasm + js
+
+wasm.js 通常用于旧版本浏览器，`-sWASM=2` 会同时输出 wasm.js 和 wasm + js ，浏览器加载独立的 wasm 失败后会自动加载 wasm.js 文件。wasm.js 将 wasm 编译成 base64 字符串保存在 js 文件中，通常会比 wasm + js 大一些。如果明确用户的浏览器版本支持 wasm ，没有必要使用 wasm.js 。
 
 ### 按需编译
 
@@ -113,12 +115,14 @@ emcc 编译参数和 gcc 的大致相同，可以选择关闭生产环境中的�
 - `-O0` - 完全不优化，保留所有调试信息
 - `-O1` - 基础优化，消除运行时断言
 - `-O2` - `-O1` 基础上进一步优化，消除死代码
-- `-O3` - `-O2` 基础上再优化
+- `-O3` - `-O2` 基础上再优化，减小输出文件
 - `-Og` - 和 `-O1` 差不多，比 `-O1` 保留更多调试信息
 - `-Os` - 和 `-O3` 差不多，比 `-O3` 输出文件更小
 - `-Oz` - 和 `-Os` 差不多，比 `-Os` 输出文件更小
 
 默认值是 `-O0` ，保留所有调试信息。
+
+> 注意，优化级别越高，编译的时间就会越长。
 
 #### 3. `-g<level>`
 
@@ -155,7 +159,21 @@ emscripten 支持的值有：
 EXPORT_ES6
 ```
 
-将这个配置设置为 `1` ，便可以把胶水代码输出为符合 esmodule 规范的模块。默认情况下，胶水代码输出包含环境嗅探的 CommonJS 模块和 IIFE ，在现代前端项目中无法使用 `import` 导入。
+将这个配置设置为 `1` ，便可以把胶水代码输出为符合 esmodule 规范的模块。默认情况下，胶水代码输出包含环境嗅探的 CommonJS 模块和 IIFE ，在现代前端项目中无法使用 `import` 导入。对比一下两种输出的区别：
+
+```JavaScript
+// -sEXPORT_ES6=1
+
+// ... 最后一行
+;return moduleRtn}export default CModule;
+```
+
+```JavaScript
+// -sEXPORT_ES6=0
+
+// ... 最后一行
+;return moduleRtn}})();if(typeof exports==="object"&&typeof module==="object"){module.exports=CModule;module.exports.default=CModule}else if(typeof define==="function"&&define["amd"])define([],()=>CModule);
+```
 
 ### 文件系统
 
