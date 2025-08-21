@@ -1,50 +1,13 @@
 <script lang="ts" setup>
-import {useTemplateRef, onMounted, nextTick, ref, onUnmounted} from 'vue';
-import {useComment} from './composables/useComment';
+  import {useTemplateRef} from 'vue';
+  import {useComment} from './composables/useComment';
+  import {useAnchor} from './composables/useAnchor';
 
   const pageRef = useTemplateRef('page-ref');
   const commentRef = useTemplateRef('comment-ref');
 
   useComment(commentRef);
-
-  // function goHash() {
-  //   const { hash } = location;
-  //   const target = document.getElementById(decodeURIComponent(hash).slice(1));
-  //   target ? target.scrollIntoView({
-  //     block: 'start',
-  //     behavior: 'smooth'
-  //   }): pageRef.value?.scrollTo(0, 0);
-  // }
-
-  const controller = ref<AbortController>();
-  onMounted(() => {
-    nextTick(() => {
-      controller.value = new AbortController();
-      pageRef.value?.addEventListener('click', (evt) => {
-        const link = (evt.target as (HTMLElement | null))?.closest?.('a');
-        if (!link) {
-          return;
-        }
-        const linkHref = link.getAttribute('href') || '';
-        const { origin, hash } = new URL(linkHref, link.baseURI);
-        if (origin === location.origin && hash) {
-          const target = link.classList.contains('header-anchor')
-            ? link
-            : document.getElementById(decodeURIComponent(hash).slice(1));
-          target?.scrollIntoView({
-            block: 'start',
-            behavior: 'smooth'
-          });
-        }
-      }, {
-        signal: controller.value.signal
-      });
-    });
-  });
-
-  onUnmounted(() => {
-    controller.value?.abort();
-  });
+  useAnchor(pageRef);
 
 </script>
 
