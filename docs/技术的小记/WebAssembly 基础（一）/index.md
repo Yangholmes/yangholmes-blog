@@ -8,6 +8,8 @@ createDate: 2024/06/21
 
 > 本系列是读书笔记，比较零散
 
+[[toc]]
+
 ## 高级计算机语言的两种运行方式
 
 1. 预先编译 Ahead-of-Time Compilation ，简称 AOT
