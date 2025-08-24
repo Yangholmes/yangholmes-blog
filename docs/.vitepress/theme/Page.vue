@@ -52,6 +52,12 @@
         text-decoration: none;
       }
     }
+
+    :deep(img) {
+      width: 100%;
+      max-width: calc(840px - 3rem * 2);
+      margin: 0 auto;
+    }
   }
 }
 </style>
