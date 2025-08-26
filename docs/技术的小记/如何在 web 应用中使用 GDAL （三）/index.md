@@ -288,3 +288,5 @@ wasm 文件减小了 6177075Bytes ，瘦身了 22.44% ； js 文件减小了 182
 
 1. emscripten 的虚拟文件系统
 2. \*.data 是什么，有什么用，如何优化 \*.data
+
+> 参考： [Compiling mkbitmap to WebAssembly](https://web.dev/articles/compiling-mkbitmap-to-webassembly)
