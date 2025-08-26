@@ -157,7 +157,7 @@ class {
 ```JavaScript
 FS.mount(WORKERFS, {
   files: files // Array of File objects or FileList
-}, /worker); // 挂载 WORKERFS 到 /worker 目录
+}, '/worker'); // 挂载 WORKERFS 到 /worker 目录
 ```
 
 其他文件操作，如 `mkdir` `rmdir` `chmod` `link` 等函数均在 `FS` 对象中实现，直接调用即可。文件系统具有继承性，除非是挂载点，子节点的文件系统类型继承自父节点:
