@@ -16,7 +16,7 @@ const slots = defineSlots<{
 <style lang="less" scoped>
 .mobile-only {
   display: none;
-  @media (width <= 840px) {
+  @media (width <= @max-width) {
     display: block;
   }
 }

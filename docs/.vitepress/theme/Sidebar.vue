@@ -157,7 +157,7 @@ function onToggle() {
     }
   }
 
-@media (width <= 840px) {
+@media (width <= @max-width) {
   .sidebar {
     transform: translateX(-100%);
 

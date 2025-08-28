@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .page {
   width: 100%;
   height: 100%;
@@ -61,7 +61,7 @@
 
     :deep(img) {
       width: 100%;
-      max-width: calc(840px - 3rem * 2);
+      max-width: ~"calc(@{max-width} - 3rem * 2)";
       margin: 0 auto;
     }
 

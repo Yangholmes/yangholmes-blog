@@ -1,4 +1,4 @@
-@import url('./variables.less');
+@import url('./style/css-variables.less');
 
 html,
 body {
@@ -12,7 +12,7 @@ html {
   font-size: 16px;
 }
 
-@media (width <= 840px) {
+@media (width <= @max-width) {
   html {
     font-size: 14px;
   }

@@ -62,7 +62,7 @@ const layoutName = useLayout();
     position: relative;
   }
 
-  @media (width <= 840px) {
+  @media (width <= @max-width) {
     .left-side {
       flex: 0;
       min-width: 0;

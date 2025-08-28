@@ -1,4 +1,6 @@
+import { resolve } from 'path';
 import { defineConfigWithTheme, HeadConfig } from 'vitepress';
+
 import { SearchPlugin } from 'vitepress-plugin-search';
 import { withMermaid } from 'vitepress-plugin-mermaid';
 import flexSearchIndexOptions from 'flexsearch';
@@ -28,6 +30,11 @@ export default withMermaid(defineConfigWithTheme({
       })
     ],
     css: {
+      preprocessorOptions: {
+        less: {
+          additionalData: `@import "${resolve(__dirname, 'theme/style/less-variables.less')}";`
+        }
+      },
       postcss: {
         plugins:[
           autoprefixer(),
