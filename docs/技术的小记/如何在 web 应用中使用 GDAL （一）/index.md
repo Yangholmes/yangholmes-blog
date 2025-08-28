@@ -5,7 +5,7 @@ title: 如何在 web 应用中使用 GDAL （一）
 
 # 如何在 web 应用中使用 GDAL （一）
 
-**2025/08/04**
+[[createDate]]
 
 [[toc]]
 

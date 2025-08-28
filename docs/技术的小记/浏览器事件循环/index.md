@@ -4,7 +4,7 @@ createDate: 2023/05/22
 
 # 浏览器事件循环
 
-**2023/05/22**
+[[createDate]]
 
 浏览器事件循环模型和 Node.js 不太一样，Node.js 事件循环使用 libuv 实现，是复杂的多阶段任务队列， I/O 密集型；浏览器比 Node.js 多一个渲染任务，但阶段少，队列比较单一。每个浏览器有不同的解决方案（ Chromium 的 Blink ，Firefox 的 Gecko ），符合 HTML5 规范即可。
 

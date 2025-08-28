@@ -4,7 +4,7 @@ createDate: 2024/06/21
 
 # WebAssembly 基础（一）
 
-**2024/06/21**
+[[createDate]]
 
 > 本系列是读书笔记，比较零散
 

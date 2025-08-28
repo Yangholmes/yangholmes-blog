@@ -5,7 +5,7 @@ title: ExtJS 自定义 datetimefield 控件
 
 # ExtJS 自定义 datetimefield 控件
 
-**2016/05/07**
+[[createDate]]
 
 这一年都在使用 ExtJS 5.0 开发系统，经常会遇到的一个场景就是时间日期的选择了。比如说，预定场地的时候就必须由用户选择预定的日期和时间。
 

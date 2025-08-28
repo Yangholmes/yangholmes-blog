@@ -4,7 +4,7 @@ createDate: 2025/08/26
 
 # EMSCRIPTEN File System 入门
 
-**2025/08/26**
+[[createDate]]
 
 [[toc]]
 

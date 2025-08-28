@@ -5,7 +5,7 @@ title: 什么是原型链
 
 # 什么是原型链
 
-**2021-01-13**
+[[createDate]]
 
 原型链是 JavaScript 最基本的概念之一。想要搞明白什么是原型链也不是那么容易的事情，MDN 上有一篇关于[继承和原型链的文章](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)，把原型链解释得很清楚，但是官方文档缺乏总结，看完之后可能只有一个模糊的概念，还是不能清晰地解释出，什么是原型链。
 

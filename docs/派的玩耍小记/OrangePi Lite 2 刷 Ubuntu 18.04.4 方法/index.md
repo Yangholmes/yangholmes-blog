@@ -5,7 +5,7 @@ title: OrangePi Lite 2 刷 Ubuntu 18.04.4 方法
 
 #### 尴尬的场景
 
-**2020-05-03**
+[[createDate]]
 
 OrangePi Lite 2 可玩度很高，性价比也很高，是一款真香机。但香橙官方一直没给出 OrangePi Lite 2 适配的 Ubuntu 18 以上版本的固件，目前最新是 Ubuntu 16 （官方释出了 WIP 版本的 18，还不是 supported），Armbian 适配的 Lite 2 固件又一直没搞定蓝牙和声卡。用来做服务器，官方系统版本太旧，用来做显示，Armbian 蓝牙和声卡又用不了，挺尴尬的。
 

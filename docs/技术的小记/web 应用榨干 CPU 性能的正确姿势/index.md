@@ -5,7 +5,7 @@ title: web 应用榨干 CPU 性能的正确姿势
 
 # web 应用榨干 CPU  性能的正确姿势
 
-**2021/09/03**
+[[createDate]]
 
 [[toc]]
 

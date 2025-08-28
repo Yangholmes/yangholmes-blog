@@ -4,7 +4,7 @@ createDate: 2025/05/28
 
 # 如何为 Vue 组件提供 slots 静态类型检查
 
-**2025/05/28**
+[[createDate]]
 
 使用 TypeScript + jsx 编写 vue 组件的前提下
 

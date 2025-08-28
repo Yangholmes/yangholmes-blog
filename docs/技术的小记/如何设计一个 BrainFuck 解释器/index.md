@@ -5,7 +5,7 @@ title: 如何设计一个 BrainFuck 解释器
 
 ### BrainFuck 解释器
 
-**2018-05-21**
+[[createDate]]
 
 BrainFuck 是一种深奥难懂的计算机语言（=大脑去你的=），1993 年一个叫 Urban Müller 的人发明了这种语言。fuck 是脏话，所以百度百科把 BrainFuck 和谐成了 BrainF\*\*k。
 

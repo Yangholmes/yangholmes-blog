@@ -5,7 +5,7 @@ title: Atom 改装指南
 
 ### Atom 改装指南
 
-**2018-06-22**
+[[createDate]]
 
 <img src="./Atom-logo.svg" alt="Atom logo">
 

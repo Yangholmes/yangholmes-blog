@@ -4,7 +4,7 @@ createDate: 2016/05/09
 
 # 脚本化 CSS
 
-**2016-05-09**
+[[createDate]]
 
 CSS 即 层叠样式表，Cascading Style Sheet 的首字母缩写，是一种指定 HTML 文档外观表现的标准，目前流行的是 CSS3。
 

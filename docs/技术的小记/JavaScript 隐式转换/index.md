@@ -5,7 +5,7 @@ title: JavaScript 隐式转换
 
 # JavaScript 隐式转换
 
-**2025/08/13**
+[[createDate]]
 
 ## 令人头疼的问题
 

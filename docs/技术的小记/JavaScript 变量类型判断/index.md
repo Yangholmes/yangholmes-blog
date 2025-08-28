@@ -5,7 +5,7 @@ title: JavaScript 变量类型判断
 
 # JavaScript 变量类型判断
 
-**2025/07/12**
+[[createDate]]
 
 [[toc]]
 

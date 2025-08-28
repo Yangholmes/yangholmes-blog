@@ -5,7 +5,7 @@ title: 如何设计一个易用的 tag 组件
 
 ### 如何设计一个易用的 tag 组件
 
-**2018-05-15**
+[[createDate]]
 
 前一阵子，项目上有一个 tag 功能需求，要求实现标签的显示、修改和样式定制。我们的项目已经引入了[iView](https://www.iviewui.com/)作为 UI 组件，立即就想到直接使用 iView 的 tag 组件。
 
