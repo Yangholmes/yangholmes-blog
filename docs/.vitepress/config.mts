@@ -7,6 +7,7 @@ import autoprefixer from 'autoprefixer';
 import { getAllCategories, getAllPosts } from './utils';
 
 const MS_CLARITY_ID = process.env.MS_CLARITY_ID || '';
+const STIE_URL = process.env.STIE_URL || 'https://yangholmes.github.io';
 
 // https://vitepress.dev/reference/site-config
 export default withMermaid(defineConfigWithTheme({
@@ -41,6 +42,10 @@ export default withMermaid(defineConfigWithTheme({
   head: [
     ['link', { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }]
   ],
+
+  sitemap: {
+    hostname: STIE_URL
+  },
 
   markdown: {
     lineNumbers: true,

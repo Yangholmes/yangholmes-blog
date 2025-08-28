@@ -1,20 +1,26 @@
 <script lang="ts" setup>
+  import {useData} from 'vitepress';
   import {useTemplateRef} from 'vue';
+  import dayjs from 'dayjs';
   import {useComment} from './composables/useComment';
   import {useAnchor} from './composables/useAnchor';
+
+  const {page} = useData();
 
   const pageRef = useTemplateRef('page-ref');
   const commentRef = useTemplateRef('comment-ref');
 
   useComment(commentRef);
   useAnchor(pageRef);
-
 </script>
 
 <template>
   <div class="page" ref="page-ref">
     <div class="vp-doc">
       <Content />
+      <p class="last-updated">
+        最后更新时间: {{ dayjs(page.lastUpdated).format('YYYY年MM月DD日') }}
+      </p>
     </div>
     <div ref="comment-ref" />
     <Footer />
@@ -57,6 +63,11 @@
       width: 100%;
       max-width: calc(840px - 3rem * 2);
       margin: 0 auto;
+    }
+
+    .last-updated {
+      font-size: .7rem;
+      color: var(--vp-c-text-2);
     }
   }
 }

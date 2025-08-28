@@ -86,7 +86,7 @@ int main(void) {
 
 > 这两种文件系统只能在 Node.js 环境中使用
 
-NODEFS 文件系统将宿主的文件系统代理到 emscripten 虚拟文件系统中，使用 Node.js 同步文件 api ，可以直接读写本地磁盘的数据。
+NODEFS 文件系统将宿主的文件系统代理到 emscripten 虚拟文件系统中，使用 Node.js 同步文件 api ，可以间接读写本地磁盘的数据。
 
 NODERAWFS 文件系统不需要通过 emscripten 代理，直接调用 Node.js 文件模块。最显著的区别是，NODEFS 需要执行 `FS.mount()` 挂载虚拟文件系统，通过虚拟路径读写文件；NODERAWFS 不需要挂载，直接使用绝对物理路径读写。
 
