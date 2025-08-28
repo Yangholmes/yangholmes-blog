@@ -1,12 +1,15 @@
 import { resolve } from 'path';
 import { defineConfigWithTheme, HeadConfig } from 'vitepress';
 
-import { SearchPlugin } from 'vitepress-plugin-search';
-import { withMermaid } from 'vitepress-plugin-mermaid';
 import flexSearchIndexOptions from 'flexsearch';
 import autoprefixer from 'autoprefixer';
 
+// @ts-ignore
+import { SearchPlugin } from 'vitepress-plugin-search';
+import { withMermaid } from 'vitepress-plugin-mermaid';
+
 import { getAllCategories, getAllPosts } from './utils';
+import { createDatePlugin } from './theme/markdown-it-plugins/createDate-plugin';
 
 const MS_CLARITY_ID = process.env.MS_CLARITY_ID || '';
 const STIE_URL = process.env.STIE_URL || 'https://yangholmes.github.io';
@@ -56,6 +59,9 @@ export default withMermaid(defineConfigWithTheme({
 
   markdown: {
     lineNumbers: true,
+    config(md) {
+      md.use(createDatePlugin);
+    },
   },
 
 
