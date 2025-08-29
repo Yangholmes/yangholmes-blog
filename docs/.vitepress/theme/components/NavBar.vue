@@ -1,17 +1,31 @@
 <script lang="ts" setup>
+import {useRoute, useRouter} from 'vitepress';
+import useLayout from '../composables/useLayout';
 import MobileOnly from './MobileOnly.vue';
 import RoundButton from './RoundButton.vue';
 
-const props = defineProps<{}>();
+// const props = defineProps<{}>();
+
+const layoutName = useLayout();
+
+const route = useRoute();
+const router = useRouter();
 
 function onBack() {
-  history.back();
+  const { path } = route
+  const upPath = path.split('/')[1]
+  router.go(`/${upPath}`)
 }
 </script>
 
 <template>
   <div class="nav-bar">
-    <RoundButton icon="arrow-left" @click="onBack" />
+    <template v-if="layoutName === 'Page'">
+      <RoundButton
+        icon="arrow-left"
+        @click="onBack"
+      />
+    </template>
   </div>
 </template>
 

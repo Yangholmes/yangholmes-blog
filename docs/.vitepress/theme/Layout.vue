@@ -24,7 +24,7 @@ const layoutName = useLayout();
       <Sidebar />
     </div>
     <main class="content">
-      <NavBar v-if="layoutName === 'Page'" />
+      <NavBar />
 
       <PostList v-if="layoutName === 'PostList'"/>
       <Home v-else-if="layoutName === 'Home'"/>
