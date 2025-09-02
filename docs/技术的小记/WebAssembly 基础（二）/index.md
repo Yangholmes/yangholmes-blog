@@ -16,7 +16,7 @@ createDate: 2025/09/02
 
 和其他二进制格式一样，wasm 二进制格式也是以 **魔术数**+**版本号** 开头（ **Magic Number** + **Version** ），其他模块按照不同的类别聚合放在不同的**段**（ **Segment** ）中，**严格按照顺序排列**，分配 ID 。wasm 一共有 12 个段，魔术数 和 版本号 没有分配 ID ，位于开头，其他段均有 ID ，范围是 1~11 ，ID 0 特殊，不需要按照顺序出现。二进制文件格式对人类阅读不友好，这里详细展开讨论，只介绍每个段的功能。
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/adcn7shhps4cxd1xbiyq.png)
+![wasm 二进制格式结构](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/adcn7shhps4cxd1xbiyq.png)
 
 ### 0. 自定义段 Custom Section
 
@@ -77,6 +77,8 @@ wasm 二进制格式采用小端方式（Little-Endian）编码，wasm 的魔术
 ```
 
 wasm 采用 [LEB128](https://en.wikipedia.org/wiki/LEB128) 编码整数值，采用 [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) 编码浮点数值。 LEB128 是一种变长码压缩，可以减少整型数的存储空间，压缩代码；IEEE 754 是常用的浮点数储存方法，这两个编码方式这里不展开。
+
+![wasm binary code](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yv9hjhgge9jqdwdv3kn2.png)
 
 ## wat 语法
 
