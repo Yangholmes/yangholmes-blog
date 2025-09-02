@@ -16,6 +16,9 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
+      three:
+        specifier: ^0.179.1
+        version: 0.179.1
       vue:
         specifier: ^3.5.18
         version: 3.5.18
@@ -26,6 +29,9 @@ importers:
       '@types/node':
         specifier: ^24.2.0
         version: 24.2.0
+      '@types/three':
+        specifier: ^0.179.0
+        version: 0.179.0
       '@types/vue':
         specifier: ^2.0.0
         version: 2.0.0
@@ -181,6 +187,9 @@ packages:
 
   '@chevrotain/utils@11.0.3':
     resolution: {integrity: sha512-YslZMgtJUyuMbZ+aKvfF3x1f5liK4mWNxghFRv7jqRR9C3R3fAOGTTKvxXDa2Y1s9zSbcpuO0cAxDYsc9SrXoQ==}
+
+  '@dimforge/rapier3d-compat@0.12.0':
+    resolution: {integrity: sha512-uekIGetywIgopfD97oDL5PfeezkFpNhwlzlaEYNOA0N6ghdsOvh/HYjSMek5Q2O1PYvRSDFcqFVJl4r4ZBwOow==}
 
   '@docsearch/css@3.8.2':
     resolution: {integrity: sha512-y05ayQFyUmCXze79+56v/4HpycYF3uFqB78pLPrSV5ZKAlDuIAAJNhaRi8tTdRNXh05yxX/TyNnzD6LwSM89vQ==}
@@ -491,6 +500,9 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
+  '@tweenjs/tween.js@23.1.3':
+    resolution: {integrity: sha512-vJmvvwFxYuGnF2axRtPYocag6Clbb5YS7kLL+SO/TeVFzHqDIWrNKYtcsPMibjDx9O+bu+psAy9NKfWklassUA==}
+
   '@types/d3-array@3.2.1':
     resolution: {integrity: sha512-Y2Jn2idRrLzUfAKV2LyRImR+y4oa2AntrgID95SHJxuMUrkNXmanDSed71sRNZysveJVt1hLLemQZIady0FpEg==}
 
@@ -615,6 +627,12 @@ packages:
   '@types/node@24.2.0':
     resolution: {integrity: sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==}
 
+  '@types/stats.js@0.17.4':
+    resolution: {integrity: sha512-jIBvWWShCvlBqBNIZt0KAshWpvSjhkwkEu4ZUcASoAvhmrgAUI2t1dXrjSL4xXVLB4FznPrIsX3nKXFl/Dt4vA==}
+
+  '@types/three@0.179.0':
+    resolution: {integrity: sha512-VgbFG2Pgsm84BqdegZzr7w2aKbQxmgzIu4Dy7/75ygiD/0P68LKmp5ie08KMPNqGTQwIge8s6D1guZf1RnZE0A==}
+
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
 
@@ -627,6 +645,9 @@ packages:
 
   '@types/web-bluetooth@0.0.21':
     resolution: {integrity: sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA==}
+
+  '@types/webxr@0.5.23':
+    resolution: {integrity: sha512-GPe4AsfOSpqWd3xA/0gwoKod13ChcfV67trvxaW2krUbgb9gxQjnCx8zGshzMl8LSHZlNH5gQ8LNScsDuc7nGQ==}
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
@@ -725,6 +746,9 @@ packages:
 
   '@vueuse/shared@12.8.2':
     resolution: {integrity: sha512-dznP38YzxZoNloI0qpEfpkms8knDtaoQ6Y/sfS0L7Yki4zh40LFHEhur0odJC6xTHG5dxWVPiUWBXn+wCG2s5w==}
+
+  '@webgpu/types@0.1.64':
+    resolution: {integrity: sha512-84kRIAGV46LJTlJZWxShiOrNL30A+9KokD7RB3dRCIqODFjodS5tCD5yyiZ8kIReGVZSDfA3XkkwyyOIF6K62A==}
 
   '@xmldom/xmldom@0.9.8':
     resolution: {integrity: sha512-p96FSY54r+WJ50FIOsCOjyj/wavs8921hG5+kVMmZgKcvIKxMXHTrjNJvRgWa/zuX3B6t2lijLNFaOyuxUH+2A==}
@@ -1093,6 +1117,9 @@ packages:
     resolution: {integrity: sha512-zCnTtlxNoAiDc3gqY2aYAWFx7XWWiasuF2K8Me5WbN8otHKTUKBwjPtNpRs/rbUZm7KxWAaNj7P1a/p52GbVug==}
     engines: {node: '>=0.10.0'}
 
+  fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
+
   flexsearch@0.8.205:
     resolution: {integrity: sha512-REFjMqy86DKkCTJ4gIE42c9MVm9t1vUWfEub/8taixYuhvyu4jd4XmFALk5VuKW4GH4VLav8A4BJboTsslHF1w==}
 
@@ -1253,6 +1280,9 @@ packages:
 
   mermaid@11.9.0:
     resolution: {integrity: sha512-YdPXn9slEwO0omQfQIsW6vS84weVQftIyyTGAZCwM//MGhPzL1+l6vO6bkf0wnP4tHigH1alZ5Ooy3HXI2gOag==}
+
+  meshoptimizer@0.22.0:
+    resolution: {integrity: sha512-IebiK79sqIy+E4EgOr+CAw+Ke8hAspXKzBd0JdgEmPHiAwmvEj2S4h1rfvo+o/BnfEYd/jAOg5IeeIjzlzSnDg==}
 
   mhchemparser@4.2.1:
     resolution: {integrity: sha512-kYmyrCirqJf3zZ9t/0wGgRZ4/ZJw//VwaRVGA75C4nhE60vtnIzhl9J9ndkX/h6hxSN7pjg/cE0VxbnNM+bnDQ==}
@@ -1482,6 +1512,9 @@ packages:
 
   tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
+
+  three@0.179.1:
+    resolution: {integrity: sha512-5y/elSIQbrvKOISxpwXCR4sQqHtGiOI+MKLc3SsBdDXA2hz3Mdp3X59aUp8DyybMa34aeBwbFTpdoLJaUDEWSw==}
 
   tinyexec@1.0.1:
     resolution: {integrity: sha512-5uC6DDlmeqiOwCPmK9jMSdOuZTh8bU39Ys6yidB+UTt5hfZUPGAypSgFRiEp+jbi9qH40BLDvy85jIU88wKSqw==}
@@ -1800,6 +1833,8 @@ snapshots:
 
   '@chevrotain/utils@11.0.3': {}
 
+  '@dimforge/rapier3d-compat@0.12.0': {}
+
   '@docsearch/css@3.8.2': {}
 
   '@docsearch/js@3.8.2(@algolia/client-search@5.35.0)(search-insights@2.17.3)':
@@ -2037,6 +2072,8 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
+  '@tweenjs/tween.js@23.1.3': {}
+
   '@types/d3-array@3.2.1': {}
 
   '@types/d3-axis@3.0.6':
@@ -2188,6 +2225,18 @@ snapshots:
     dependencies:
       undici-types: 7.10.0
 
+  '@types/stats.js@0.17.4': {}
+
+  '@types/three@0.179.0':
+    dependencies:
+      '@dimforge/rapier3d-compat': 0.12.0
+      '@tweenjs/tween.js': 23.1.3
+      '@types/stats.js': 0.17.4
+      '@types/webxr': 0.5.23
+      '@webgpu/types': 0.1.64
+      fflate: 0.8.2
+      meshoptimizer: 0.22.0
+
   '@types/trusted-types@2.0.7':
     optional: true
 
@@ -2200,6 +2249,8 @@ snapshots:
       - typescript
 
   '@types/web-bluetooth@0.0.21': {}
+
+  '@types/webxr@0.5.23': {}
 
   '@ungap/structured-clone@1.3.0': {}
 
@@ -2306,6 +2357,8 @@ snapshots:
       vue: 3.5.18
     transitivePeerDependencies:
       - typescript
+
+  '@webgpu/types@0.1.64': {}
 
   '@xmldom/xmldom@0.9.8': {}
 
@@ -2722,6 +2775,8 @@ snapshots:
     dependencies:
       is-extendable: 0.1.1
 
+  fflate@0.8.2: {}
+
   flexsearch@0.8.205: {}
 
   focus-trap@7.6.5:
@@ -2941,6 +2996,8 @@ snapshots:
       uuid: 11.1.0
     transitivePeerDependencies:
       - supports-color
+
+  meshoptimizer@0.22.0: {}
 
   mhchemparser@4.2.1: {}
 
@@ -3183,6 +3240,8 @@ snapshots:
       copy-anything: 3.0.5
 
   tabbable@6.2.0: {}
+
+  three@0.179.1: {}
 
   tinyexec@1.0.1: {}
 
