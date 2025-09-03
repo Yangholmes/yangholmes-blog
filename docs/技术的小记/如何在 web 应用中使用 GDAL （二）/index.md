@@ -128,7 +128,13 @@ const table = new WebAssembly.Table({
 });
 
 let index = 0;
-table.set(index, sanitizedConsoleLog); // table 索引 0 绑定到 sanitizedConsoleLog
+table.set(
+  index,
+  new WebAssembly.Function(
+    { parameters: ["i32"], results: [] },
+    sanitizedConsoleLog
+  )
+); // table 索引 0 绑定到 sanitizedConsoleLog
 
 // ...
 
@@ -145,6 +151,8 @@ const { instance } = await WebAssembly.instantiate(bytes, {
 // 调用安全的日志函数
 instance.exports.safe_log(messagePtr);
 ```
+
+> JavaScript 进程中定义的函数不能直接设置到 `table` 上，因为 JavaScript Function 不具有类型定义。`WebAssembly.Function` 提供了为 JavaScript Function 提供类型定义的方法，但截至目前为止 `WebAssembly.Function` 尚未实现，还在提案中。
 
 ### 线程的管理
 
