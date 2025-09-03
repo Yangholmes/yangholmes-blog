@@ -6,7 +6,6 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 // 模型资源位置
-// @ts-ignore
 import modelAssets from './assets/cat.glb?url';
 
 const canvasRef = useTemplateRef<HTMLCanvasElement>('canvas-ref');
@@ -152,7 +151,7 @@ function init(canvas: HTMLCanvasElement) {
 
 <style lang="less">
 .home {
-  padding: 3rem;
+  // padding: 3rem;
   width: 100%;
   height: 100%;
 

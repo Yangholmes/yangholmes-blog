@@ -1,11 +1,6 @@
-/// <reference types="vite/client" />
+/// <reference types="vitepress/client" />
 
 declare module '*.glb' {
-  const content: string;
-  export default content;
-}
-
-declare module '*.glb?url' {
   const content: string;
   export default content;
 }
