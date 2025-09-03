@@ -38,7 +38,7 @@ function init(canvas: HTMLCanvasElement) {
   const far = 100;
 
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(0, 10, 20);
+  camera.position.set(20, 10, 20);
 
   const controls = new OrbitControls( camera, canvas );
   controls.target.set( 0, 5, 0 );
@@ -49,8 +49,8 @@ function init(canvas: HTMLCanvasElement) {
 
   {
     // 增加半球光源
-    const skyColor = 0xB1E1FF; // light blue
-    const groundColor = 0xB97A20; // brownish orange
+    const skyColor = 0xFFFFFF;
+    const groundColor = 0x000000;
     const intensity = 2;
     const light = new THREE.HemisphereLight( skyColor, groundColor, intensity );
     scene.add( light );
@@ -58,10 +58,10 @@ function init(canvas: HTMLCanvasElement) {
 
   {
     // 增加平行光源
-    const color = 0xFFFFFF;
-    const intensity = 2.5;
+    const color = 0xAE7A20;
+    const intensity = 2;
     const light = new THREE.DirectionalLight( color, intensity );
-    light.position.set( 5, 10, 2 );
+    light.position.set( 0, 200, 0 );
     scene.add( light );
     scene.add( light.target );
   }
@@ -76,6 +76,8 @@ function init(canvas: HTMLCanvasElement) {
       // compute the box that contains all the stuff
       // from root and below
       const box = new THREE.Box3().setFromObject( root );
+
+      console.log(box);
 
       const boxSize = box.getSize( new THREE.Vector3() ).length();
       const boxCenter = box.getCenter( new THREE.Vector3() );
@@ -98,7 +100,7 @@ function init(canvas: HTMLCanvasElement) {
     // in the xz plane from the center of the box
     const direction = ( new THREE.Vector3() )
       .subVectors( camera.position, boxCenter )
-      .multiply( new THREE.Vector3( 1, 0, 1 ) )
+      .multiply( new THREE.Vector3( 1, 1, 1 ) )
       .normalize();
 
     // move the camera to a position distance units way from the center
