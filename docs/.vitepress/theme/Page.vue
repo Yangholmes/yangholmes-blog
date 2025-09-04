@@ -59,7 +59,8 @@
       }
     }
 
-    :deep(img) {
+    :deep(img),
+    :deep(video) {
       width: 100%;
       max-width: ~"calc(@{max-width} - 3rem * 2)";
       margin: 0 auto;
