@@ -58,7 +58,7 @@ function init(canvas: HTMLCanvasElement) {
 
   {
     // 增加平行光源
-    const color = 0xAE7A20;
+    const color = 0xFFFFFF;
     const intensity = 2;
     const light = new THREE.DirectionalLight( color, intensity );
     light.position.set( 0, 200, 0 );
