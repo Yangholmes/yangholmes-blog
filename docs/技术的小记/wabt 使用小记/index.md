@@ -14,7 +14,7 @@ createDate: 2025/09/04
 
 用 wat 实现斐波那契数列：
 
-```wat
+```wasm
 ;; fib.wat
 (module
   (import "env" "log" (func $log (param i32)))
@@ -227,7 +227,7 @@ Type[2]:
 
 `wat-desugar` 命令可以用来整理现有的 wat 代码，以符合某些规范。比如上文的 fib.wat 源码没有严格按照 `操作数压栈 -> 执行指令` 的流程编写，经常将操作数写在指令后面，尽管是合法的写法，但不符合栈式虚拟机的范式。使用 `wat-desugar` 可以帮助我们规范这份代码。这里展示 `$allocate` 函数整理后的代码：
 
-```wat
+```wasm
 (func $allocate (param $size i32) (result i32)
     (local $start i32)
     global.get $heap_ptr

@@ -59,6 +59,9 @@ export default withMermaid(defineConfigWithTheme({
 
   markdown: {
     lineNumbers: true,
+    image: {
+      lazyLoading: true
+    },
     config(md) {
       md.use(createDatePlugin);
     },
