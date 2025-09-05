@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {nextTick, onMounted, useTemplateRef} from 'vue';
+import {nextTick, onMounted, ref, useTemplateRef} from 'vue';
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -17,6 +17,8 @@ onMounted(() => {
     }
   });
 })
+
+const loadingProgress = ref(0);
 
 function init(canvas: HTMLCanvasElement) {
   const height = canvas.clientHeight;
@@ -77,8 +79,6 @@ function init(canvas: HTMLCanvasElement) {
       // from root and below
       const box = new THREE.Box3().setFromObject( root );
 
-      console.log(box);
-
       const boxSize = box.getSize( new THREE.Vector3() ).length();
       const boxCenter = box.getCenter( new THREE.Vector3() );
 
@@ -89,6 +89,8 @@ function init(canvas: HTMLCanvasElement) {
       controls.maxDistance = boxSize * 10;
       controls.target.copy( boxCenter );
       controls.update();
+    }, (xhr) => {
+      loadingProgress.value = (xhr.loaded / xhr.total) * 100;
     })
   }
 
@@ -148,6 +150,11 @@ function init(canvas: HTMLCanvasElement) {
 <template>
   <div class="home">
     <canvas ref="canvas-ref"></canvas>
+    <div class="loading" v-show="loadingProgress < 100">
+      <p>模型加载中，请稍候</p>
+      <p>{{ loadingProgress.toFixed(2) }}%</p>
+    </div>
+
   </div>
 </template>
 
@@ -156,11 +163,20 @@ function init(canvas: HTMLCanvasElement) {
   // padding: 3rem;
   width: 100%;
   height: 100%;
+  position: relative;
 
   canvas {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
+  }
+
+  .loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
   }
 }
 </style>
