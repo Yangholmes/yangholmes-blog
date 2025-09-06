@@ -22,8 +22,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       name: 检出代码
-      width:
-        fetch-depth: 0
+      with:
+        fetch-depth: 0 # avoid shallow clone
 
     - uses: pnpm/action-setup@v4
       name: 安装 pnpm
