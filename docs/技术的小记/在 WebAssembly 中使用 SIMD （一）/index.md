@@ -2,7 +2,7 @@
 createDate: 2025/09/08
 ---
 
-# 在 WebAssembly 中使用 SIMD
+# 在 WebAssembly 中使用 SIMD （一）
 
 [[createDate]]
 
