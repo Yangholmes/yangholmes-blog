@@ -62,7 +62,7 @@ emcc invert-c.c -o invert-c.wasm \
 
 启用 SIMD 编译，编译命令为：
 
-```bash
+```bash{2}
 emcc invert-c.c -o invert-c-simd.wasm \
 -msimd128 -O3 -g3 \
 -sERROR_ON_UNDEFINED_SYMBOLS=0 \
@@ -163,7 +163,7 @@ i8x16.shuffle 2 6 10 14 0 0 0 0 0 0 0 0
 
 最后，笔者尝试使用 emscripten SIMD 指令重新编写代码。算法的思路和 wat 版本的一致，也是通过长度补齐的方式避免像素总数不是 16 的倍数：
 
-```c
+```c{24}
 // invert-c-simd.c
 #include <stdint.h>
 #include <emscripten/emscripten.h>
