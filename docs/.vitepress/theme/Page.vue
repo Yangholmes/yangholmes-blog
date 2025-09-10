@@ -7,7 +7,7 @@
 
   import BackToTop from './components/BackToTop.vue';
 
-  const { page } = useData();
+  const { page, theme } = useData();
 
   const pageRef = useTemplateRef('page-ref');
   const commentRef = useTemplateRef('comment-ref');
@@ -20,12 +20,12 @@
   <div class="page" ref="page-ref">
     <div class="vp-doc">
       <Content />
-      <p class="last-updated">
+      <p v-if="!!theme.lastUpdated" class="last-updated">
         最后更新时间: {{ dayjs(page.lastUpdated).format('YYYY年MM月DD日') }}
       </p>
     </div>
-    <div ref="comment-ref" />
-    <BackToTop :container="pageRef" />
+    <div v-if="!!theme?.page?.comment" ref="comment-ref" />
+    <BackToTop v-if="!!theme?.page?.backToTop" :container="pageRef" />
     <Footer />
   </div>
 </template>

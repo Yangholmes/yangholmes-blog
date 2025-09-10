@@ -119,6 +119,12 @@ export default withMermaid(defineConfigWithTheme({
     posts: await getAllPosts(),
     lastUpdated: true,
 
+    // 私有配置项
+    page: {
+      backToTop: true,
+      comment: true
+    },
+
     search: {
       provider: 'local',
     },
