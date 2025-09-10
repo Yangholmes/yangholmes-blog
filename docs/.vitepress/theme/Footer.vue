@@ -10,7 +10,7 @@ const thisYear = new Date().getFullYear();
     <p class="driver">
       使用
       ❤️ <a href="https://vitepress.dev/" target="_blank">Vitepress</a>
-      搭建 - Yangholmes 提供主题
+      搭建 - Yangholmes 提供<a href="/renovation-progress">主题</a>
     </p>
   </div>
 </template>
@@ -32,12 +32,16 @@ const thisYear = new Date().getFullYear();
   border: 2px solid var(--color--level-3);
   border-radius: 20px;
 
-  p {
+  :deep(p) {
     margin: 0;
     font-size: 1rem;
 
     &.driver {
       font-size: .7rem;
+    }
+
+    a {
+      color: var(--color--level-4);
     }
   }
 }
