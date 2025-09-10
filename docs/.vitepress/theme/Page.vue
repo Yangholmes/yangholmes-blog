@@ -5,7 +5,9 @@
   import {useComment} from './composables/useComment';
   import {useAnchor} from './composables/useAnchor';
 
-  const {page} = useData();
+  import BackToTop from './components/BackToTop.vue';
+
+  const { page } = useData();
 
   const pageRef = useTemplateRef('page-ref');
   const commentRef = useTemplateRef('comment-ref');
@@ -23,6 +25,7 @@
       </p>
     </div>
     <div ref="comment-ref" />
+    <BackToTop :container="pageRef" />
     <Footer />
   </div>
 </template>
@@ -71,5 +74,6 @@
       color: var(--vp-c-text-2);
     }
   }
+
 }
 </style>
