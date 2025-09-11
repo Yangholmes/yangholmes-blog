@@ -18,51 +18,51 @@ createDate: 2025/09/02
 
 ![wasm 二进制格式结构](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/adcn7shhps4cxd1xbiyq.png)
 
-### 0. 自定义段 Custom Section
+##### 0. 自定义段 Custom Section
 
 自定义段是可以用来存放任何数据，比如提供给编译器等工具使用，记录函数名等调试信息。这个段在模块中可有可无，wasm 不执行自定义段也不会出错。另外，虽然自定义段的 ID 是 0 ，但不必要出现在开头或者结尾，可以出现在任何一个非自定义段的前面或者后面，且可以存在多个自定义段。常见的内容有 sourceMap 链接、DWARF 调试信息。
 
-### 1. 类型段 Type Section
+##### 1. 类型段 Type Section
 
 列出模块中所有函数原型（或者说函数签名、函数类型），即函数的参数和返回值。类似 C 的头文件。
 
-### 2. 导入段 ​​Import Section
+##### 2. 导入段 ​​Import Section
 
 列出模块所有导入项，包括函数、内存、表、全局变量。
 
-### 3. 函数段 Function Section
+##### 3. 函数段 Function Section
 
 列出内部函数对应的签名索引。
 
-### 4. 表段 Table Section
+##### 4. 表段 Table Section
 
 定义模块使用的表，如函数引用。 wasm v1.0 规定只有一张表，v2.0 表数量可以有多个。
 
-### 5. 内存段 Memory Section
+##### 5. 内存段 Memory Section
 
 列出模块使用的线性内存，包括内存的初始页数、最大页数、内存数量。wasm v1.0 规定一个模块只能有一块内存，v2.0 内存数量可以有多个。
 
-### 6. 全局段 Global Section
+##### 6. 全局段 Global Section
 
 定义全局变量及其初始值。
 
-### 7. 导出段 ​​Export Section
+##### 7. 导出段 ​​Export Section
 
 声明模块对外暴露的对象。
 
-### 8. 起始段 ​​Start Section
+##### 8. 起始段 ​​Start Section
 
 指定起始函数，类似于 C 的 `main` 函数，在模块初始化时自动执行。
 
-### 9. 元素段 Element Section
+##### 9. 元素段 Element Section
 
 表的初始化数据。
 
-### 10. 代码段 Code Section
+##### 10. 代码段 Code Section
 
 所有函数的二进制指令。函数段（ID 3）和代码段（ID 10）必须一一对应。
 
-### 11. 数据段 Data Section
+##### 11. 数据段 Data Section
 
 初始化线性内存。
 

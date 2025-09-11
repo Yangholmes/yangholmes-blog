@@ -39,22 +39,51 @@
   overflow: auto;
 
   .vp-doc {
+
+    // 目录宽度
+    --toc-width: 13rem;
+
+    @media (width <= @max-toc-width) {
+      --toc-width: 0;
+      :deep(.table-of-contents) {
+        display: none;
+      }
+    }
+
     width: 100%;
-    /* margin-top: 3rem; */
-    /* height: 100%; */
 
+    // 用于放置目录
+    padding-right: var(--toc-width);
+
+    transition: padding .3s;
+
+    // 目录
     :deep(.table-of-contents) {
-      width: auto;
-      padding: 1.25rem 1.25rem 1.25rem 0;
+      width: var(--toc-width);
+      height: 100%;
 
-      display: inline-block;
-
-      border: 2px solid var(--color--level-3);
-      border-radius: 20px;
+      position: absolute;
+      top: 10rem;
+      left: 100%;
 
       ul {
+        width: 100%;
+        height: auto;
         margin: 0;
-        list-style: none;
+        padding-left: 2.5rem;
+
+        list-style: disc;
+
+        position: sticky;
+        top: 0;
+
+        li::marker {
+          color: var(--vp-c-brand-1);
+        }
+
+        ul {
+          padding-left: 1.25rem;
+        }
       }
 
       a {
