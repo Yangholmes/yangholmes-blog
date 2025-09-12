@@ -2,7 +2,7 @@ import { useData } from 'vitepress';
 import { onUnmounted, shallowRef, ShallowRef, watch } from 'vue';
 
 export function useComment(el: ShallowRef<HTMLDivElement | null>) {
-  const { isDark } = useData()
+  const { isDark } = useData();
 
   const scriptRef = shallowRef<HTMLScriptElement | null>(null);
 
@@ -35,14 +35,14 @@ export function useComment(el: ShallowRef<HTMLDivElement | null>) {
     script.setAttribute('crossorigin', 'anonymous');
     script.setAttribute('async', '1');
     el.value.appendChild(script);
-    scriptRef.value = script
-  })
+    scriptRef.value = script;
+  });
 
   onUnmounted(() => {
     if (scriptRef.value) {
       el.value?.removeChild(scriptRef.value);
       scriptRef.value?.remove();
     }
-  })
+  });
 
 }

@@ -3,8 +3,8 @@
  * @author Yangholmes 2025-08-05
  */
 
-import {join, resolve} from 'path';
-import {readdirSync, readFileSync, statSync} from 'fs';
+import { join, resolve } from 'path';
+import { readdirSync, readFileSync, statSync } from 'fs';
 import matter from 'gray-matter';
 
 export type PostItem = {
@@ -16,33 +16,33 @@ export type PostItem = {
 }
 
 export function getAllCategories() {
-  const postRoot = resolve(import.meta.dirname, '../')
+  const postRoot = resolve(import.meta.dirname, '../');
   const folders = readdirSync(postRoot);
   // 获取所有分类
   const categories = folders.filter(f => {
     return !f.startsWith('.') &&
       f !== 'public' &&
-      statSync(join(postRoot, f)).isDirectory()
-  })
-  return categories
+      statSync(join(postRoot, f)).isDirectory();
+  });
+  return categories;
 }
 
 export function getAllPosts() {
-  const postRoot = resolve(import.meta.dirname, '../')
+  const postRoot = resolve(import.meta.dirname, '../');
   const categories = getAllCategories();
 
   const allPosts: {
     [key: string]: PostItem[]
-  } = {}
+  } = {};
 
   categories.forEach(cat => {
     const catDir = join(postRoot, cat);
     const posts = readdirSync(catDir)
       .filter(f => {
         if (statSync(join(catDir, f)).isDirectory()) {
-          return true
+          return true;
         }
-        return f.endsWith('.md') && f !== 'index.md'
+        return f.endsWith('.md') && f !== 'index.md';
       }).map(post => {
         let path = '';
         if (statSync(join(catDir, post)).isDirectory()) {
@@ -60,7 +60,7 @@ export function getAllPosts() {
           createDate: frontmatter.data.createDate,
           excerpt: frontmatter.excerpt,
           // frontmatter
-        }
+        };
       }).sort((a, b) => {
         const at = a.createDate ? new Date(a.createDate).getTime() : 0;
         const bt = b.createDate ? new Date(b.createDate).getTime() : 0;
@@ -68,12 +68,12 @@ export function getAllPosts() {
       });
 
     allPosts[cat] = posts;
-  })
+  });
 
-  return allPosts
+  return allPosts;
 }
 
-export function importFile(filePath) {
+export function importFile(filePath: string) {
   const path = resolve(import.meta.dirname, filePath);
   return readFileSync(path, 'utf-8');
 }
