@@ -15,20 +15,22 @@ export type PostItem = {
   excerpt?: string;
 }
 
+const CategoriesBlacklist = ['tag'];
+
 export function getAllCategories() {
-  const postRoot = resolve(import.meta.dirname, '../');
+  const postRoot = resolve(import.meta.dirname, '../posts');
   const folders = readdirSync(postRoot);
   // 获取所有分类
   const categories = folders.filter(f => {
     return !f.startsWith('.') &&
-      f !== 'public' &&
+      !CategoriesBlacklist.includes(f) &&
       statSync(join(postRoot, f)).isDirectory();
   });
   return categories;
 }
 
-export function getAllPosts() {
-  const postRoot = resolve(import.meta.dirname, '../');
+export function getAllPostsByCat() {
+  const postRoot = resolve(import.meta.dirname, '../posts');
   const categories = getAllCategories();
 
   const allPosts: {

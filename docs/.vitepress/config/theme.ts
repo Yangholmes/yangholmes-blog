@@ -4,11 +4,11 @@
  */
 
 import { LocaleSpecificConfig } from 'vitepress';
-import { getAllCategories, getAllPosts } from '../utils';
+import { getAllCategories, getAllPostsByCat } from '../utils';
 
 const themeConfig: LocaleSpecificConfig['themeConfig'] = {
   categories: getAllCategories(),
-  posts: await getAllPosts(),
+  posts: await getAllPostsByCat(),
   lastUpdated: true,
 
   // 私有配置项

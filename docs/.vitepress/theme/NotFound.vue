@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import {onMounted, onUnmounted, ref} from 'vue';
+import { useRouter } from 'vitepress';
+import RoundButton from './components/RoundButton.vue';
+
+const router = useRouter();
 
 const x = ref(0);
 const y = ref(0);
@@ -18,7 +22,7 @@ function init() {
   ];
 }
 
-function onMouseMove(evt) {
+function onMouseMove(evt: MouseEvent) {
   let position = {
       x: evt.clientX,
       y: evt.clientY
@@ -47,10 +51,26 @@ onUnmounted(() => {
   controller.value.abort();
 })
 
+function onBack() {
+  router.go('/');
+}
+
 </script>
 
 <template>
-  <p class="notfound" :style="`filter: drop-shadow(${x}px ${y}px ${blur}px #aaa)`">404</p>
+  <div class="notfound">
+    <p
+      :style="`filter: drop-shadow(${x}px ${y}px ${blur}px #aaa)`"
+    >
+      404
+    </p>
+    <div>
+      <RoundButton
+        icon="arrow-left"
+        @click="onBack"
+      />
+    </div>
+  </div>
 </template>
 
 <style scope>
@@ -58,9 +78,15 @@ onUnmounted(() => {
   padding: 0;
   margin: 0;
 
-  display: block;
-  font-size: 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  font-size: 8rem;
   font-weight: 900;
+  line-height: 1;
 
   position: absolute;
   top: 50%;

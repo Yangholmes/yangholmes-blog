@@ -17,6 +17,7 @@ export default withMermaid(defineConfigWithTheme({
   title: 'Yangholmes\' blog',
   description: 'Yangholmes\' blog',
   lastUpdated: true,
+  srcDir: 'posts',
 
   head: [
     ['link', { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }]

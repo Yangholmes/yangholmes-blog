@@ -12,7 +12,7 @@ const posts = ref<PostItem[]>([])
 
 watch(() => route.path, () => {
   const category = page.value.relativePath.split('/')[0]
-  posts.value = theme.value.posts[category].map((post) => {
+  posts.value = theme.value.posts[category].map((post: PostItem) => {
     return {
       ...post,
       createDate: post.createDate
