@@ -3,7 +3,9 @@ tags: 本主题
 createDate: 2025/08/06
 ---
 
-# 本主题 roadmap
+# 本主题
+
+## roadmap
 
 - <input type="checkbox" disabled checked /> vuepress 下架，换成 vitepress
 
@@ -27,4 +29,8 @@ createDate: 2025/08/06
 
 - <input type="checkbox" disabled checked /> 添加回到顶部
 
-- <input type="checkbox" disabled /> 设计标签系统
+- <input type="checkbox" disabled checked /> 设计标签系统
+
+## todo
+
+- <input type="checkbox" disabled /> title 、 description 等页面元信息支持使用动态数据
