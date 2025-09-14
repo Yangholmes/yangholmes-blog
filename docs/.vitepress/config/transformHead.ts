@@ -10,6 +10,15 @@ export default function transformHead(ctx: TransformContext) {
   const { pageData } = ctx;
   const head: HeadConfig[] = [];
 
+  let tags = [];
+  if (Array.isArray(pageData.frontmatter.tags)) {
+    tags = pageData.frontmatter.tags.map(tag => tag.trim());
+  } else if (typeof pageData.frontmatter.tags === 'string') {
+    tags = pageData.frontmatter.tags.split(',').map(tag => tag.trim());
+  }
+  const tagsStr = tags.length ? `${tags.join(', ')}` : '';
+  const description = pageData.description || `${[pageData.title, tagsStr].join(', ')}`;
+
   head.push(
     ['meta', {
       property: 'og:title',
@@ -17,7 +26,7 @@ export default function transformHead(ctx: TransformContext) {
     }],
     ['meta', {
       property: 'og:description',
-      content: pageData.description || pageData.title
+      content: description
     }],
     ['meta', {
       property: 'og:type',

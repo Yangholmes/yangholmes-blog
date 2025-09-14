@@ -14,7 +14,8 @@ const themeConfig: LocaleSpecificConfig['themeConfig'] = {
   // 私有配置项
   page: {
     backToTop: true,
-    comment: true
+    comment: true,
+    relatedTags: true
   },
 
   search: {

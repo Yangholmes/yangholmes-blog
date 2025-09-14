@@ -19,7 +19,7 @@ const posts = params.value.posts.map(post => {
 
 <template>
   <div class="post-list">
-    <h1>#标签: {{ params.tag }}</h1>
+    <h1>标签: {{ params.tag }}</h1>
     <Content />
     <ul class="list">
       <li class="item" v-for="post in posts" :key="post.url">

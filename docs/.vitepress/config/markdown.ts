@@ -4,7 +4,7 @@
  */
 
 import MarkdownIt from 'markdown-it';
-import { createDatePlugin } from './markdown-it-plugins/createDate-plugin';
+import { createDatePlugin } from './markdown-it-plugins/createDatePlugin';
 
 export default {
   lineNumbers: true,
