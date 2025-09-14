@@ -1,6 +1,6 @@
 ---
 createDate: 2025/05/28
-tag: Vue, TypeScript
+tags: Vue, TypeScript
 ---
 
 # 如何为 Vue 组件提供 slots 静态类型检查

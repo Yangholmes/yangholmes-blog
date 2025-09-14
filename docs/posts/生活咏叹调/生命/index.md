@@ -1,6 +1,7 @@
 ---
 createDate: 2020/11/18
 title: 生命
+tags: 哲学
 ---
 
 # 生命

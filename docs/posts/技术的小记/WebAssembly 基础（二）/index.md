@@ -1,6 +1,6 @@
 ---
 createDate: 2025/09/02
-tags: WebAssembly
+tags: WebAssembly, wat
 ---
 
 # WebAssembly 基础（二）

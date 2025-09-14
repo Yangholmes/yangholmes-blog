@@ -1,6 +1,6 @@
 ---
 createDate: 2023/05/22
-tag: JavaScript
+tags: JavaScript, 浏览器
 ---
 
 # 浏览器事件循环

@@ -1,6 +1,7 @@
 ---
 createDate: 2020/05/03
 title: OrangePi Lite 2 刷 Ubuntu 18.04.4 方法
+tags: 嵌入式, Ubuntu, OrangePi
 ---
 
 #### 尴尬的场景

@@ -1,7 +1,7 @@
 ---
 createDate: 2021/01/13
 title: 什么是原型链
-tag: JavaScript
+tags: JavaScript
 ---
 
 # 什么是原型链

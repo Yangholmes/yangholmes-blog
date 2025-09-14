@@ -1,6 +1,7 @@
 ---
 createDate: 2019/10/27
 title: gcc 的编译过程
+tags: C
 ---
 
 ### gcc 的使用

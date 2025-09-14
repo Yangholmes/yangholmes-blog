@@ -1,5 +1,6 @@
 ---
 createDate: 2019/11/23
+tags: 嵌入式
 ---
 
 # Node.js 驱动步进电机

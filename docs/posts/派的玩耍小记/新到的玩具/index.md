@@ -1,6 +1,7 @@
 ---
 createDate: 1572019200000
 title: 新到的玩具
+tags: 嵌入式, OrangePi, RaspberryPi
 ---
 
 #### ARM Linux 学习笔记

@@ -1,7 +1,7 @@
 ---
 createDate: 2025/07/12
 title: JavaScript 变量类型判断
-tag: JavaScript
+tags: JavaScript
 ---
 
 # JavaScript 变量类型判断

@@ -1,7 +1,7 @@
 ---
 createDate: 2021/09/03
 title: web 应用榨干 CPU 性能的正确姿势
-tag: JavaScript, Worker
+tags: JavaScript, Worker
 ---
 
 # web 应用榨干 CPU  性能的正确姿势

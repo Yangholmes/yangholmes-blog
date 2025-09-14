@@ -1,6 +1,6 @@
 ---
 createDate: 2025/09/09
-tags: WebAssembly, SIMD, EMSCRIPTEN
+tags: WebAssembly, SIMD, EMSCRIPTEN, wabt
 ---
 
 # 在 WebAssembly 中使用 SIMD（二）

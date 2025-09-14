@@ -1,7 +1,7 @@
 ---
 createDate: 1526342400000
 title: 如何设计一个易用的 tag 组件
-tag: Vue
+tags: Vue
 ---
 
 ### 如何设计一个易用的 tag 组件

@@ -1,7 +1,7 @@
 ---
 createDate: 2025/08/13
 title: JavaScript 隐式转换
-tag: JavaScript
+tags: JavaScript
 ---
 
 # JavaScript 隐式转换

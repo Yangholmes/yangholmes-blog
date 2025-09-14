@@ -1,6 +1,6 @@
 ---
 createDate: 2025/09/08
-tags: WebAssembly, SIMD
+tags: WebAssembly, SIMD, wabt
 ---
 
 # 在 WebAssembly 中使用 SIMD （一）

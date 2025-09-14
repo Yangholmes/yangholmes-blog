@@ -1,7 +1,7 @@
 ---
 createDate: 2016/05/07
 title: ExtJS 自定义 datetimefield 控件
-tag: ExtJS, JavaScript
+tags: ExtJS, JavaScript
 ---
 
 # ExtJS 自定义 datetimefield 控件
@@ -83,7 +83,7 @@ ExtJS 5.0 上测试成功，实现方法是：
       me.callSpinnersFunction('render', spinnerWrap);
       this.el.dom.getElementsByTagName('input')[0].style.display = 'none';
       var newTimePicker = Ext.DomHelper.append(spinnerWrap, {
-        tag: 'div',
+        tags: 'div',
         cls: 'x-form-clear-left'
       }, true);
       this.setRawValue(this.value);
@@ -240,10 +240,10 @@ ExtJS 5.0 上测试成功，实现方法是：
       var table = Ext.get(Ext.DomQuery.selectNode('table', this.el.dom));
 
       var tfEl = Ext.DomHelper.insertAfter(table, {
-        tag: 'div',
+        tags: 'div',
         style: 'border:0px;',
         children: [{
-          tag: 'div',
+          tags: 'div',
           cls: 'x-datepicker-footer ux-timefield'
         }]
       }, true);

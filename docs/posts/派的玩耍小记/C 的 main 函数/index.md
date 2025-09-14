@@ -1,6 +1,7 @@
 ---
 createDate: 2019/10/27
 title: C 的 main 函数
+tags: C
 ---
 
 ### Linux C 程序入口函数 main() 小解

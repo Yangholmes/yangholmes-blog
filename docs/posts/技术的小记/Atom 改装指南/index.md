@@ -1,7 +1,7 @@
 ---
 createDate: 2018/06/22
 title: Atom 改装指南
-tag: Atom, IDE
+tags: Atom, IDE
 ---
 
 ### Atom 改装指南

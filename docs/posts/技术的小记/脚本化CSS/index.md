@@ -1,6 +1,6 @@
 ---
 createDate: 2016/05/09
-tag: CSS
+tags: CSS
 ---
 
 # 脚本化 CSS
