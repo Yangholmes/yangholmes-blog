@@ -5,6 +5,7 @@ import Sidebar from './Sidebar.vue';
 import NotFound from './NotFound.vue';
 import Home from './Home.vue';
 import Page from './Page.vue';
+import Tag from './Tag.vue';
 import PostList from './PostList.vue';
 
 import useLayout from './composables/useLayout';
@@ -28,6 +29,7 @@ const layoutName = useLayout();
 
       <PostList v-if="layoutName === 'PostList'"/>
       <Home v-else-if="layoutName === 'Home'"/>
+      <Tag v-else-if="layoutName === 'Tag'"/>
       <Page v-else />
     </main>
   </div>
