@@ -1,6 +1,8 @@
 ---
 createDate: 2025/09/04
-tags: WebAssembly
+tags:
+  - WebAssembly
+  - wabt
 ---
 
 # wabt 使用小记
