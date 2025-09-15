@@ -70,7 +70,8 @@ export default {
             const bt = b.createDate ? new Date(b.createDate).getTime() : 0;
             return bt - at;
           })
-        }
+        },
+        content: key
       }
     })
 
