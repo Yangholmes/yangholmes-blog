@@ -1,6 +1,7 @@
 ---
 createDate: 2024/06/21
 tags: WebAssembly
+description: 本文介绍了 WebAssembly 的编译原理基础，包括 AOT 与 JIT 两种运行方式、现代编译器的三段式结构（前端/中端/后端），以及 WASM 在编译流程中的角色。同时阐述了 WASM 的三种格式（二进制/.wasm、文本/.wat、内存格式）及其流式加载特性。
 ---
 
 # WebAssembly 基础（一）

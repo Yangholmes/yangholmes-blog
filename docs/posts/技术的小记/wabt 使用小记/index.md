@@ -3,6 +3,7 @@ createDate: 2025/09/04
 tags:
   - WebAssembly
   - wabt
+description: 本文介绍了 WebAssembly 工具集 wabt 的核心功能，包括 wat2wasm 编译 wat 代码的实践示例、 wasm-objdump 分析模块导出信息的方法、 wat-desugar 规范化代码风格，以及 wasm2wat/wasm-decompile 等反汇编工具的使用技巧。
 ---
 
 # wabt 使用小记

@@ -1,6 +1,7 @@
 ---
 createDate: 2025/09/02
 tags: WebAssembly, wat
+description: 本文详细介绍了 WebAssembly 二进制格式的模块结构和各分段功能，并系统讲解了其文本格式( wat )的核心语法，包括函数定义、内存操作、表的使用、控制流指令以及模块的导入导出机制，为理解和使用 WASM 提供了基础。
 ---
 
 # WebAssembly 基础（二）
