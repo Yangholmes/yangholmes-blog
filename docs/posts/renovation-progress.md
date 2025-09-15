@@ -33,6 +33,6 @@ createDate: 2025/08/06
 
 ## todo
 
-- <input type="checkbox" disabled /> 页面自动注入标签列表
+- <input type="checkbox" disabled checked /> 页面自动注入标签列表
 
 - <input type="checkbox" disabled /> title 、 description 等页面元信息支持使用动态数据
