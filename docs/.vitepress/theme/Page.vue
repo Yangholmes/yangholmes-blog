@@ -6,7 +6,7 @@
   import {useAnchor} from './composables/useAnchor';
 
   import BackToTop from './components/BackToTop.vue';
-import RelatedTags from './components/RelatedTags.vue';
+  import RelatedTags from './components/RelatedTags.vue';
 
   const { page, theme } = useData();
 

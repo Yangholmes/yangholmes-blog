@@ -15,21 +15,25 @@ function onScrollTop() {
     top: 0, behavior: 'smooth'
   })
 }
-
 function onScroll() {
   if (!container) return;
-  criticalHeight.value = container.clientHeight / 2;
   const scrollPosition = container.scrollTop;
   isShown.value = scrollPosition > criticalHeight.value;
+}
+
+function onResize() {
+  if (!container) return;
+  criticalHeight.value = container.clientHeight / 3 * 2;
+  onScroll();
 }
 
 const controller = ref<AbortController>();
 onMounted(() => {
   nextTick().then(() => {
-    onScroll();
+    onResize();
     if (!container) return;
     container.addEventListener('scroll', onScroll, { signal: controller.value?.signal });
-    window.addEventListener('resize', onScroll, { signal: controller.value?.signal });
+    window.addEventListener('resize', onResize, { signal: controller.value?.signal });
   });
 });
 
