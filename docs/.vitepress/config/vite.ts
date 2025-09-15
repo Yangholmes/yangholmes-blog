@@ -4,13 +4,15 @@
  */
 
 import { resolve } from 'path';
+import { UserConfig } from 'vitepress';
 
 // @ts-ignore
 import { SearchPlugin } from 'vitepress-plugin-search';
 import flexSearchIndexOptions from 'flexsearch';
 import autoprefixer from 'autoprefixer';
 
-export default {
+const viteConfig: UserConfig['vite'] = {
+  publicDir: '../public',
   plugins: [
     SearchPlugin({
       ...flexSearchIndexOptions,
@@ -37,3 +39,5 @@ export default {
     include: ['mermaid']
   }
 };
+
+export default viteConfig;

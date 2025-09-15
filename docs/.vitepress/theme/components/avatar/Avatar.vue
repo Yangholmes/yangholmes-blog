@@ -1,16 +1,31 @@
 <script lang="ts" setup>
-import avatarImage from './cats.png'
+import {useData} from 'vitepress';
+
+const { theme } = useData();
+
+const avatarImage = theme.value.whoami.avatar || null;
+
+const name = theme.value.whoami.name || null;
+
+const description = theme.value.whoami.description || null;
+
 </script>
 
 <template>
   <div class="avatar">
-    <a href="/">
-      <div class="image" :style="`--image: url(${avatarImage})`" />
+    <a
+      v-if="avatarImage"
+      href="/"
+    >
+      <div class="image" :style="`--image: url('${avatarImage}')`" />
     </a>
-    <p>Yangholmes</p>
-    <p>
-      邋遢和小松的
-      <ruby>铲<rt>chǎn</rt></ruby><ruby>屎<rt>shǐ</rt></ruby><ruby>官<rt>guān</rt></ruby>
+    <p v-if="name" class="name">
+      {{name}}
+    </p>
+    <p v-if="description" class="description">
+      {{ description }}
+      <!-- 邋遢和小松的
+      <ruby>铲<rt>chǎn</rt></ruby><ruby>屎<rt>shǐ</rt></ruby><ruby>官<rt>guān</rt></ruby> -->
     </p>
   </div>
 </template>
@@ -24,7 +39,7 @@ import avatarImage from './cats.png'
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: .1rem;
+  gap: .5rem;
 
   font-size: 1rem;
   font-weight: 600;
@@ -47,6 +62,14 @@ import avatarImage from './cats.png'
     background-image: var(--image);
     background-size: cover;
     border-radius: 9999rem;
+  }
+
+  .name {
+    font-size: 1.25rem;
+  }
+
+  .description {
+    font-size: .85rem;
   }
 }
 </style>

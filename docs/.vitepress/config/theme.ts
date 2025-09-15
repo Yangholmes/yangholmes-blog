@@ -11,6 +11,12 @@ const themeConfig: LocaleSpecificConfig['themeConfig'] = {
   posts: await getAllPostsByCat(),
   lastUpdated: true,
 
+  whoami: {
+    avatar: '/cats.png',
+    name: 'Yangholmes',
+    description: '邋遢和小松的铲屎官'
+  },
+
   // 私有配置项
   page: {
     backToTop: true,
