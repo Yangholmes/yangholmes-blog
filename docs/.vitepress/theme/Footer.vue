@@ -20,7 +20,6 @@ const thisYear = new Date().getFullYear();
   width: 100%;
   height: auto;
   padding: 2rem;
-  margin-top: 3rem;
 
   display: flex;
   flex-direction: column;

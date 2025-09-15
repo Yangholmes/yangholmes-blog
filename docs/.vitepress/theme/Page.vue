@@ -29,7 +29,9 @@
       </div>
     </div>
     <div v-if="!!theme?.page?.comment" ref="comment-ref" />
-    <BackToTop v-if="!!theme?.page?.backToTop" :container="pageRef" />
+    <div class="back-con">
+      <BackToTop v-if="!!theme?.page?.backToTop" :container="pageRef" />
+    </div>
     <Footer />
   </div>
 </template>
@@ -43,6 +45,7 @@
   overflow: auto;
 
   .vp-doc {
+    margin-bottom: 3rem;
 
     // 目录宽度
     --toc-width: 13rem;
@@ -111,5 +114,15 @@
     }
   }
 
+  .back-con {
+    width: var(--round-button-size);
+    height: 0;
+    margin-top: 3rem;
+
+    position: sticky;
+    left: 100%;
+    bottom: 20%;
+    z-index: 4;
+  }
 }
 </style>

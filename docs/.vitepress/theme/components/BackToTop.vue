@@ -57,13 +57,9 @@ onUnmounted(() => {
 
 <style lang="less" scoped>
 .back-to-top {
-  position: sticky;
-  left: 100%;
-  bottom: 20%;
-  z-index: 4;
-
   opacity: 0;
   transition: opacity .3s;
+
   &.is-shown {
     opacity: 1;
   }

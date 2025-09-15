@@ -37,11 +37,13 @@ watch(() => route.path, () => {
         </a>
       </li>
     </ul>
+  </div>
+  <div class="footer-con">
     <Footer />
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .post-list {
   padding: 0 3rem;
   margin: 3rem 0;
@@ -67,5 +69,11 @@ watch(() => route.path, () => {
       }
     }
   }
+}
+
+.footer-con {
+  padding: 0 3rem 3rem 3rem;
+  position: sticky;
+  top: 100%;
 }
 </style>

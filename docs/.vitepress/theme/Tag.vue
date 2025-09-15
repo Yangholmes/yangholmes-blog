@@ -37,6 +37,8 @@ const posts = params.value.posts.map(post => {
         </p>
       </li>
     </ul>
+  </div>
+  <div class="footer-con">
     <Footer />
   </div>
 </template>
@@ -73,5 +75,11 @@ const posts = params.value.posts.map(post => {
       }
     }
   }
+}
+
+.footer-con {
+  padding: 0 3rem 3rem 3rem;
+  position: sticky;
+  top: 100%;
 }
 </style>
