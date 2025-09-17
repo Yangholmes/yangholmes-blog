@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { defineSlots } from 'vue';
 import {JSX} from 'vue/jsx-runtime';
 
 const slots = defineSlots<{

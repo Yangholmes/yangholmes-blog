@@ -7,12 +7,13 @@ import Socials from './components/Socials.vue';
 import ThemeSwitch from './components/ThemeSwitch.vue';
 import SidebarToggleHandler from './components/SidebarToggleHandler.vue';
 
-const { theme } = useData();
+// @ts-ignore
+import { data } from './data/cat.data';
 
 const route = useRoute();
 
 const allCategories = computed(() => {
-  return theme.value.categories;
+  return data.categories as string[];
 })
 
 const catInRoute = computed(() => {

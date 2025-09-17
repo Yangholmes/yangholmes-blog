@@ -1,27 +1,25 @@
 <script lang="ts" setup>
-import {useData, useRoute} from 'vitepress'
-import {ref, watch} from 'vue';
+import {useData} from 'vitepress'
+import {computed} from 'vue';
 import dayjs from 'dayjs';
 
-import {PostItem} from '../utils';
+import { PostItem } from '../utils';
+// @ts-ignore
+import { data } from './data/posts.data';
 
-const { theme, page } = useData()
-const route = useRoute();
+const { page } = useData();
 
-const posts = ref<PostItem[]>([])
-
-watch(() => route.path, () => {
+const posts = computed(() => {
   const category = page.value.relativePath.split('/')[0]
-  posts.value = theme.value.posts[category].map((post: PostItem) => {
+  return data.posts[category].map((post: PostItem) => {
     return {
       ...post,
       createDate: post.createDate
         ? `写于 ${dayjs(post.createDate).format('YYYY年MM月DD日')}`
         : '忘记哪天写的了'
     }
-  })
-}, { immediate: true })
-
+  }) as PostItem[]
+})
 
 </script>
 

@@ -7,8 +7,8 @@ import { LocaleSpecificConfig } from 'vitepress';
 import { getAllCategories, getAllPostsByCat } from '../utils';
 
 const themeConfig: LocaleSpecificConfig['themeConfig'] = {
-  categories: getAllCategories(),
-  posts: await getAllPostsByCat(),
+  // categories: getAllCategories(),
+  // posts: await getAllPostsByCat(),
   lastUpdated: true,
 
   whoami: {
