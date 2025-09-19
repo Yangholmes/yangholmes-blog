@@ -1,6 +1,6 @@
 ---
 createDate: 2025/09/19
-tags: WebAssembly, EMSCRIPTEN, 多线程, pthread
+tags: WebAssembly, EMSCRIPTEN, pthread
 ---
 
 # EMSCRIPTEN 多线程编程笔记
@@ -36,7 +36,7 @@ pthread 提供了锁来解决这个问题，最常见的锁是互斥锁和读写
 
 ![浏览器线程](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3psq8x3j384qxosrchx9.png)
 
-这些线程由浏览器管理，开发者并不能干预，可以把这些线程看作是“不可编程”的多线程；浏览器像开发者提供了“可编程”的多线程，那就是 `Worker` 。《[web 应用榨干 CPU  性能的正确姿势](https://dev.to/yangholmes/web-ying-yong-zha-gan-cpu-xing-neng-de-zheng-que-zi-shi-218n)》介绍了在 JavaScript 中如何使用 `Worker` 实现多线程编程，并介绍了线程之间 Transferable objects 数据传输方式。 Transferable objects 有点类似 互斥锁 ，数据从一个线程传输至另一个线程的时候，不进行数据拷贝，而是传递数据所在的内存**所有权**，数据传输完成之后，只有接收线程可以访问这块数据，其他线程都无法访问；和互斥锁不同的是， Transferable objects 没有“解锁”方法，如果需要将数据“还给”发送线程，就按照 Transferable objects 的方式重新发送数据。Transferable objects 数据适用于 `ArrayBuffer` 一类数据，没有“共享”的属性。如果想要在不同的线程之间“共享”内存，就像使用真正的内存那样，就需要使用 `SharedArrayBuffer` 。
+这些线程由浏览器管理，开发者并不能干预，可以把这些线程看作是“不可编程”的多线程；浏览器向开发者提供了“可编程”的多线程，那就是 `Worker` 。《[web 应用榨干 CPU  性能的正确姿势](https://dev.to/yangholmes/web-ying-yong-zha-gan-cpu-xing-neng-de-zheng-que-zi-shi-218n)》介绍了在 JavaScript 中如何使用 `Worker` 实现多线程编程，并介绍了线程之间 Transferable objects 数据传输方式。 Transferable objects 有点类似 互斥锁 ，数据从一个线程传输至另一个线程的时候，不进行数据拷贝，而是传递数据所在的内存**所有权**，数据传输完成之后，只有接收线程可以访问这块数据，其他线程都无法访问；和互斥锁不同的是， Transferable objects 没有“解锁”方法，如果需要将数据“还给”发送线程，就按照 Transferable objects 的方式重新发送数据。Transferable objects 数据适用于 `ArrayBuffer` 一类数据，没有“共享”的属性。如果想要在不同的线程之间“共享”内存，就像使用真正的内存那样，就需要使用 `SharedArrayBuffer` 。
 
 `Worker` 和 `SharedArrayBuffer` 正是 emscripten 多线程的实现基础，尽可能地实现 POSIX 标准的 pthread 功能。`Worker` 实现了独立栈和共享 Text， `SharedArrayBuffer` 实现了共享堆，和文件系统类似，也是通过替换系统函数，移花接木。
 
@@ -96,9 +96,10 @@ Cross-Origin-Opener-Policy: same-origin
 cross-origin isolated 会带来一些不便：
 
 1. 非同源嵌入式资源无法直接加载，如 `<img>`、 `<script>`、 `<video>` 等，解决方法：
-1. 在服务端设置正确的 `Access-Control-Allow-Origin` 响应头，并在标签中添加 `crossorigin`属性，如 `<img src="***" crossorigin>`
-1. 使用 `CORP` ，服务端为资源设置 `Cross-Origin-Resource-Policy` 响应头
-1. 代理转发，把跨域资源处理称为同源资源
+
+   1. 在服务端设置正确的 `Access-Control-Allow-Origin` 响应头，并在标签中添加 `crossorigin`属性，如 `<img src="***" crossorigin>`
+   1. 使用 `CORP` ，服务端为资源设置 `Cross-Origin-Resource-Policy` 响应头
+   1. 代理转发，把跨域资源处理成为同源资源
 
 1. `<iframe>` 必须显性标明跨域嵌入，否则无法加载
 
@@ -106,9 +107,9 @@ cross-origin isolated 会带来一些不便：
 
 1. 无法改写 `document.domain`
 
-是否开启多线程需要结合页面使用的资源情况来决定。
+> 是否开启多线程需要结合页面使用的资源情况来决定。
 
-如果不确定一个页面是否符合 cross-origin isolated ，可以读取 `window.crossOriginIsolated` 嗅探，在 worker 中为 `self.crossOriginIsolated` 。无法提前预判运行环境是否跨源隔离，通常需要分别准备一套单线程方案和一套多线程方案，通过嗅探决定使用哪一种。
+如果不确定一个页面是否符合 cross-origin isolated ，可以读取 `window.crossOriginIsolated` 嗅探，在 worker 中为 `self.crossOriginIsolated` 。通常来说，无法提前预判运行环境是否跨源隔离，分别准备一套单线程方案和一套多线程方案，通过嗅探决定使用哪一种。
 
 ```JavaScript
 if (window.crossOriginIsolated) {
