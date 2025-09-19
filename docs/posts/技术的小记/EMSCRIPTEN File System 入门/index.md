@@ -1,6 +1,6 @@
 ---
 createDate: 2025/08/26
-tags: WebAssembly, EMSCRIPTEN
+tags: WebAssembly, EMSCRIPTEN, FileSystem
 ---
 
 # EMSCRIPTEN File System 入门
